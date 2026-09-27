@@ -3,6 +3,10 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 
+// Material Desigh is a design system from google.
+// Provides pre-built user interface components called widgets.
+// This is what we will use to build the app.
+
 void main() {
   runApp(const SouthseaCinemaApp());
 }
