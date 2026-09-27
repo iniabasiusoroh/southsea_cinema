@@ -8,7 +8,7 @@ import 'package:southsea_cinema/views/movie_listing.dart';
 // This is what we will use to build the app.
 
 void main() {
-  runApp(const SouthseaCinemaApp());
+  runApp(const App());
 }
 
 class SouthseaCinemaApp extends StatelessWidget {
@@ -33,5 +33,14 @@ class SouthseaCinemaApp extends StatelessWidget {
         '/listing': (context) => const MovieListing(),
       },
     );
+  }
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
