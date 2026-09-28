@@ -45,8 +45,8 @@ class App extends StatelessWidget {
       title: 'Sandwich Shop App',
       home: Scaffold(
         appBar: AppBar(title: const Text('Sandwich Shop App')),
-        body:const Center(
-          child:Text('Welcome to the Sandwich Shop!'),
+        body: Center(
+          child: OrderItemDisplay(5, 'Footlong'),
         ), 
       ),
     );
