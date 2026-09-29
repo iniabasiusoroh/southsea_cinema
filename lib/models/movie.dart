@@ -9,6 +9,7 @@ class Movie {
 	final DateTime date;
 	final DateTime timeStart;
 	final DateTime timeEnd;
+  final String imagePath; // New field for the image path
 
 	const Movie({
 		required this.title,
@@ -16,5 +17,6 @@ class Movie {
 		required this.date,
 		required this.timeStart,
 		required this.timeEnd,
+    required this.imagePath, // Initialize the new field
 	});
 }
