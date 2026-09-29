@@ -9,9 +9,17 @@ class MovieRepository {
         date: 'Thursday 22 Oct 2026',
         timeStart: '18:00',
         timeEnd: '19:14',
-        imagePath: 'assets/images/dracula.jpg',
+        imagePath: 'assets/images/dracula1931picture.jpg',
       ),
-      // Add more movies here as needed
+      Movie(
+        title: 'King Kong',
+        description: 'Please note that Discounts / Membership Benifits will be applied once you have selected your tickets',
+        date: 'Friday 23 Oct 2026',
+        timeStart: '19:00',
+        timeEnd: '20:30',
+        imagePath: 'assets/images/kongpicture.jpg',
+      ),
+      // can add more movies here
     ];
   }
 }
