@@ -6,9 +6,9 @@
 class Movie {
 	final String title;
 	final String description;
-	final DateTime date;
-	final DateTime timeStart;
-	final DateTime timeEnd;
+	final String date;
+	final String timeStart;
+	final String timeEnd;
   final String imagePath; // New field for the image path
 
 	const Movie({
