@@ -19,7 +19,7 @@ class MovieListing extends StatelessWidget {
     //   Lets us create the body. (putting the movie cards inside the body)
       body: Column(
         children: [
-          buildMovieCard('Dracula (1931) (PG)', '*Description*', 'Thursday 22 Oct 2026', '19:00'),
+          buildMovieCard('Dracula (1931) (PG)', 'Please note that Discounts / Membership Benifits will be applied once you have selected your tickets', 'Thursday 22 Oct 2026', '18:00', '19:14'),
           // buildMovieCard('Cenesupper', '*Description*'),
           // buildMovieCard('Kikuyu Land', '*Description*'),
         ],
@@ -28,15 +28,15 @@ class MovieListing extends StatelessWidget {
   }
   
   // This function creates a movie card with a title and description.
-  Container buildMovieCard(String title, String description, String date, String timeStart) {
+  Container buildMovieCard(String title, String description, String date, String timeStart, String timeEnd) {
     return Container(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.center,
 
-      margin: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(16.0),
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: cinemaSurface,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(100.0),
         border: Border.all(color: cinemaBrand, width: 2.0), // Gives each card a border with the cinema brand color.
       ),
       child: Column(
@@ -45,7 +45,7 @@ class MovieListing extends StatelessWidget {
             title,
             style: const TextStyle(
               color: cinemaFontWhite,
-              fontSize: 30,
+              fontSize: 35,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -53,12 +53,25 @@ class MovieListing extends StatelessWidget {
             'Southsea Cinema Room',
             style: const TextStyle(
               color: cinemaFontWhite,
-              fontSize: 16,
-              
+              fontSize: 16,  
+            ),
+          ),
+          Text(
+            '$date, $timeStart - ends at $timeEnd',
+            style: const TextStyle(
+              color: cinemaFontWhite,
+              fontSize: 16,  
             ),
           ),
           Text(
             description,
+            style: const TextStyle(
+              color: cinemaFontWhite,
+              fontSize: 16,
+            ),
+          ),
+          Text(
+            'Select Quantities (Up to 5 in total)',
             style: const TextStyle(
               color: cinemaFontWhite,
               fontSize: 16,
