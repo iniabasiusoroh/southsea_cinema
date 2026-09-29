@@ -89,6 +89,6 @@ class MovieListing extends StatelessWidget {
           // Two Texts for the title and description of the movie.
         ]
       )
-    );
+    ); 
   }
 }
