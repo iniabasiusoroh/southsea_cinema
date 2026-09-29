@@ -49,6 +49,7 @@ class MovieListing extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 12),
           Text(
             'Southsea Cinema Room',
             style: const TextStyle(
@@ -63,6 +64,7 @@ class MovieListing extends StatelessWidget {
               fontSize: 16,  
             ),
           ),
+          const SizedBox(height: 12),
           Text(
             description,
             style: const TextStyle(
@@ -76,6 +78,13 @@ class MovieListing extends StatelessWidget {
               color: cinemaFontWhite,
               fontSize: 16,
             ),
+          ),
+          const SizedBox(height: 12),
+          ElevatedButton(
+            onPressed: () {
+              // Add the action to perform when this button is pressed.
+            },
+            child: const Text('Add to Order'),
           ),
           // Two Texts for the title and description of the movie.
         ]
