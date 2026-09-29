@@ -72,6 +72,7 @@ class MovieListing extends StatelessWidget {
               fontSize: 16,
             ),
           ),
+          const SizedBox(height: 12),
           Text(
             'Select Quantities (Up to 5 in total)',
             style: const TextStyle(
@@ -79,7 +80,6 @@ class MovieListing extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: 12),
           const SizedBox(height: 12),
           Text(
             'Tickets',
@@ -89,19 +89,29 @@ class MovieListing extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          DropdownMenu<int>(
-            initialSelection: 0,
-            dropdownMenuEntries: const [
-              DropdownMenuEntry(value: 0, label: '0'),
-              DropdownMenuEntry(value: 1, label: '1'),
-              DropdownMenuEntry(value: 2, label: '2'),
-              DropdownMenuEntry(value: 3, label: '3'),
-              DropdownMenuEntry(value: 4, label: '4'),
-              DropdownMenuEntry(value: 5, label: '5'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              DropdownMenu<int>(
+                initialSelection: 0,
+                dropdownMenuEntries: const [
+                  DropdownMenuEntry(value: 0, label: '0'),
+                  DropdownMenuEntry(value: 1, label: '1'),
+                  DropdownMenuEntry(value: 2, label: '2'),
+                  DropdownMenuEntry(value: 3, label: '3'),
+                  DropdownMenuEntry(value: 4, label: '4'),
+                  DropdownMenuEntry(value: 5, label: '5'),
+                ],
+                onSelected: (int? value) {
+                  // Handle the selected value here.
+                },
+              ),
+              const SizedBox(width: 12),
+              const Text(
+                'Adult £7.50',
+                style: TextStyle(color: cinemaFontWhite, fontSize: 16),
+              ),
             ],
-            onSelected: (int? value) {
-              // Handle the selected value here.
-            },
           ),
           const SizedBox(height: 12),
           ElevatedButton(
