@@ -1,3 +1,8 @@
+
+// Register images in pubspec.yaml (not in this model):
+// flutter:
+//   assets:
+//     - assets/images/
 class Movie {
 	final String title;
 	final String description;
