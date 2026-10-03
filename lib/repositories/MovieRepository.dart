@@ -4,7 +4,8 @@ class MovieRepository {
   List<Movie> getMovies() {
     return [
       Movie(
-        title: 'Dracula (1931) (PG)',
+        title: 'Dracula (1931)',
+        ageRating: 'PG',
         description: 'Please note that Discounts / Membership Benefits will be applied once you have selected your tickets',
         date: 'Thursday 22 Oct 2026',
         timeStart: '18:00',
@@ -13,6 +14,7 @@ class MovieRepository {
       ),
       Movie(
         title: 'King Kong',
+        ageRating: 'PG',
         description: 'Please note that Discounts / Membership Benifits will be applied once you have selected your tickets',
         date: 'Friday 23 Oct 2026',
         timeStart: '19:00',

@@ -5,6 +5,7 @@
 //     - assets/images/
 class Movie {
 	final String title;
+  final String ageRating;
 	final String description;
 	final String date;
 	final String timeStart;
@@ -13,6 +14,7 @@ class Movie {
 
 	const Movie({
 		required this.title,
+    required this.ageRating,
 		required this.description,
 		required this.date,
 		required this.timeStart,
