@@ -9,49 +9,84 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
+      alignment: Alignment.centerLeft,
       margin: const EdgeInsets.all(16.0),
       padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[850],
-        borderRadius: BorderRadius.circular(100.0),
-        border: Border.all(color: Colors.red, width: 2.0), // Gives each card a border with the cinema brand color.
-      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children:[
-          Text(
-            movie.title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: movie.title,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: ' (${movie.ageRating})',
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                child: Image.asset(movie.imagePath),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  movie.description,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
           Text(
-            'Southsea Cinema Room',
+            'BOOK TICKETS',
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,  
             ),
           ),
-          Text(
-            '${movie.date} | ${movie.timeStart} - ${movie.timeEnd}',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,  
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            movie.description,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,  
-            ),
-          ),
-          const SizedBox(height: 12),
-          Image.asset(movie.imagePath),
+          const SizedBox(height: 20),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Text(
+                  '${movie.date} | ${movie.timeStart} - ${movie.timeEnd}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,  
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Book now'),
+              ),
+            ],
+          )
         ],
       ),
     );
