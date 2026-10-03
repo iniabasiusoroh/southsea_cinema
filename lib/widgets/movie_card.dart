@@ -22,7 +22,7 @@ class MovieCard extends StatelessWidget {
                   text: movie.title,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
-                    fontSize: 35,
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
