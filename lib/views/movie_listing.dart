@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
+import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
 class MovieListing extends StatelessWidget {
-  const MovieListing({super.key});
+  final Movie movie;
+
+  const MovieListing({
+    super.key,
+    required this.movie,
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +25,13 @@ class MovieListing extends StatelessWidget {
     //   Lets us create the body. (putting the movie cards inside the body)
       body: Column(
         children: [
-          // buildMovieCard('Dracula (1931) (PG)', 'Please note that Discounts / Membership Benifits will be applied once you have selected your tickets', 'Thursday 22 Oct 2026', '18:00', '19:14'),
-          // buildMovieCard('Cenesupper', '*Description*'),
-          // buildMovieCard('Kikuyu Land', '*Description*'),
+          buildMovieCard(
+            movie.title,
+            movie.description,
+            movie.date,
+            movie.timeStart,
+            movie.timeEnd,
+          )
         ],
       ),
     );

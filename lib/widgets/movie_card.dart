@@ -85,7 +85,7 @@ class MovieCard extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => MovieListing(movie: movie),
                     )
-                  )
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
