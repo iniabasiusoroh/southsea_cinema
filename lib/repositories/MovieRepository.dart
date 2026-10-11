@@ -10,7 +10,7 @@ class MovieRepository {
         date: 'Thursday 22 Oct 2026',
         timeStart: '18:00',
         timeEnd: '19:14',
-        price: '7.50',
+        price: 7.50,
         imagePath: 'assets/images/dracula1931picture.jpg',
       ),
       Movie(
@@ -20,7 +20,7 @@ class MovieRepository {
         date: 'Friday 23 Oct 2026',
         timeStart: '19:00',
         timeEnd: '20:30',
-        price: '7.50',
+        price: 7.50,
         imagePath: 'assets/images/kongpicture.jpg',
       ),
       // can add more movies here

@@ -10,7 +10,7 @@ class Movie {
 	final String date;
 	final String timeStart;
 	final String timeEnd;
-  final String price;
+  final double price;
   final String imagePath; // New field for the image path
 
 	const Movie({
@@ -23,5 +23,7 @@ class Movie {
     required this.price,
     required this.imagePath, // Initialize the new field
 	});
-}
 
+  String get formatttedPrice => '£${price.toStringAsFixed(2)}'; 
+
+}
