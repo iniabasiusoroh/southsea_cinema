@@ -31,6 +31,7 @@ class MovieListing extends StatelessWidget {
             movie.date,
             movie.timeStart,
             movie.timeEnd,
+            movie.price,
           )
         ],
       ),
@@ -38,7 +39,7 @@ class MovieListing extends StatelessWidget {
   }
   
   // This function creates a movie card with a title and description.
-  Container buildMovieCard(String title, String description, String date, String timeStart, String timeEnd) {
+  Container buildMovieCard(String title, String description, String date, String timeStart, String timeEnd, dynamic price) {
     return Container(
       alignment: Alignment.center,
 
@@ -117,9 +118,9 @@ class MovieListing extends StatelessWidget {
                 },
               ),
               const SizedBox(width: 12),
-              const Text(
-                'Adult £7.50',
-                style: TextStyle(color: cinemaFontWhite, fontSize: 16),
+              Text(
+                'Adult £$price',
+                style: const TextStyle(color: cinemaFontWhite, fontSize: 16),
               ),
             ],
           ),
