@@ -10,6 +10,7 @@ class Movie {
 	final String date;
 	final String timeStart;
 	final String timeEnd;
+  final String price;
   final String imagePath; // New field for the image path
 
 	const Movie({
@@ -19,6 +20,8 @@ class Movie {
 		required this.date,
 		required this.timeStart,
 		required this.timeEnd,
+    required this.price,
     required this.imagePath, // Initialize the new field
 	});
 }
+
