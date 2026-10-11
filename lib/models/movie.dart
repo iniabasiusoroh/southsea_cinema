@@ -26,4 +26,15 @@ class Movie {
 
   String get formatttedPrice => '£${price.toStringAsFixed(2)}'; 
 
+  String get isChildFriendly {
+    if (ageRating == 'U' || ageRating == 'PG') {
+      return 'True';
+    } else {
+      return 'False';
+    }
+  }
+
+
+
+
 }
