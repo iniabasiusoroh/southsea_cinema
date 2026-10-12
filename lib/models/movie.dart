@@ -32,7 +32,7 @@ class Movie {
     } else {
       return 'False';
     }
-  }
+  } 
 
 
 
