@@ -24,15 +24,11 @@ class Movie {
     required this.imagePath, // Initialize the new field
 	});
 
-  String get formatttedPrice => '£${price.toStringAsFixed(2)}'; 
+  String get formattedPrice => '£${price.toStringAsFixed(2)}';
 
-  String get isChildFriendly {
-    if (ageRating == 'U' || ageRating == 'PG') {
-      return 'True';
-    } else {
-      return 'False';
-    }
-  } 
+  bool get isChildFriendly => ageRating == 'U' || ageRating == 'PG';
+
+  bool get isAdultOnly => ageRating == '18';
 
 
 
