@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:southsea_cinema/models/movie.dart';
 
 class MovieRepository {
@@ -30,6 +31,15 @@ class MovieRepository {
   Movie? getMovieById(String id){
     for (final movie in getMovies()){
       if (movie.title == id){
+        return movie;
+      }
+    }
+    return null;
+  }
+
+  Movie? getMovieByAgeRating(String rating){
+    for (final movie in getMovies()){
+      if (movie.ageRating == rating){
         return movie;
       }
     }
