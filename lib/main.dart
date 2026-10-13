@@ -15,6 +15,7 @@ class SouthseaCinemaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Southsea Cinema & Arts Centre',
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: cinemaBackground,
@@ -32,3 +33,5 @@ class SouthseaCinemaApp extends StatelessWidget {
     );
   }
 }
+
+// Create a function that adds two integers

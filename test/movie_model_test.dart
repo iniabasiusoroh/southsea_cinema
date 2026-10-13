@@ -5,6 +5,7 @@ void main(){
   group('Movie Model Test', (){
     test('Movie model should have correct properties', () {
       final movie = Movie(
+        id: 1,
         title: 'Dracula (1931)',
         ageRating: 'PG',
         description: 'The 1931 film "Dracula" is a classic horror film directed by Tod Browning and starring Bela Lugosi as the titular vampire. The film is based on Bram Stokers 1897 novel and the 1924 stage play by Hamilton Deane and John L. Balderston. It follows the story of English solicitor Renfield, who travels to Transylvania to sell a property to Count Dracula, only to find himself entangled in the vampires bloodthirsty ways. The film is notable for being the first sound film adaptation of Bram Stokers novel and has had a significant impact on popular culture, establishing Lugosis portrayal of Dracula as a cultural icon.',
@@ -15,6 +16,7 @@ void main(){
         imagePath: 'assets/images/dracula1931picture.jpg',
       );
 
+      expect(movie.id, 1);
       expect(movie.title, 'Dracula (1931)');
       expect(movie.ageRating, 'PG');
       expect(movie.description, contains('classic horror film'));
@@ -27,6 +29,7 @@ void main(){
 
     test('formattedPrice should return price in correct format', () {
       final movie = Movie(
+        id: 1,
         title: 'Dracula (1931)',
         ageRating: 'PG',
         description: 'The 1931 film "Dracula" is a classic horror film directed by Tod Browning and starring Bela Lugosi as the titular vampire. The film is based on Bram Stokers 1897 novel and the 1924 stage play by Hamilton Deane and John L. Balderston. It follows the story of English solicitor Renfield, who travels to Transylvania to sell a property to Count Dracula, only to find himself entangled in the vampires bloodthirsty ways. The film is notable for being the first sound film adaptation of Bram Stokers novel and has had a significant impact on popular culture, establishing Lugosis portrayal of Dracula as a cultural icon.',
@@ -42,6 +45,7 @@ void main(){
 
     test('isChildFriendly should return true for U and PG ratings', () {
       final movie1 = Movie(
+        id: 1,
         title: 'Movie 1',
         ageRating: 'U',
         description: 'Description 1',
@@ -53,6 +57,7 @@ void main(){
       );
 
       final movie2 = Movie(
+        id: 2,
         title: 'Movie 2',
         ageRating: 'PG',
         description: 'Description 2',
@@ -64,6 +69,7 @@ void main(){
       );
 
       final movie3 = Movie(
+        id: 3,
         title: 'Movie 3',
         ageRating: '18',
         description: 'Description 3',
@@ -81,6 +87,7 @@ void main(){
 
     test ('isAdultOnly should return true for 18 rating', () {
       final movie1 = Movie(
+        id: 1,
         title: 'Movie 1',
         ageRating: 'U',
         description: 'Description 1',
@@ -92,6 +99,7 @@ void main(){
       );
 
       final movie2 = Movie(
+        id: 2,
         title: 'Movie 2',
         ageRating: 'PG',
         description: 'Description 2',
@@ -103,6 +111,7 @@ void main(){
       );
 
       final movie3 = Movie(
+        id: 3,
         title: 'Movie 3',
         ageRating: '18',
         description: 'Description 3',

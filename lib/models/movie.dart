@@ -4,6 +4,7 @@
 //   assets:
 //     - assets/images/
 class Movie {
+  final int id;
 	final String title;
   final String ageRating;
 	final String description;
@@ -14,6 +15,7 @@ class Movie {
   final String imagePath; // New field for the image path
 
 	const Movie({
+    required this.id,
 		required this.title,
     required this.ageRating,
 		required this.description,
