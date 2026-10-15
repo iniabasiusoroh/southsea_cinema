@@ -6,9 +6,9 @@ Future<void> pumpHomeView(WidgetTester tester) async { // test utility that take
   await tester.pumpWidget(const MaterialApp(home: HomeView())); // pump widget tells flutter to render that widget tree so that test can inspect it
   
 }
-// This is the set up big before each of the tests.
+// This is the set up before each of the tests.
 // It renders the app with home view on screen 
-// the test can then lok for the widgets/texts that it needs to find.
+// the test can then look for the widgets/texts that it needs to find.
 
 void main() {
   group('App smoke tests', () {
@@ -23,8 +23,8 @@ void main() {
       await pumpHomeView(tester);
       expect(find.text('Southsea Cinema'), findsOneWidget);
       // expect(find.text('7.50'), findsOneWidget);
-      expect(find.text('Thursday 22 Oct 2026'), findsOneWidget);
-      expect(find.text('19:00'), findsOneWidget);
+      expect(find.text('Thursday 22 Oct 2026 | 18:00 - 19:14'), findsOneWidget);
+      expect(find.text('BOOK TICKETS'), findsOneWidget);
     });
   });
 }
