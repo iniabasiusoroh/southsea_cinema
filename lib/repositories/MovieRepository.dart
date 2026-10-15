@@ -50,7 +50,7 @@ class MovieRepository {
 
   Movie? getMoviesUnderPrice(double maxPrice){
     for (final movie in getMovies()){
-      if (movie.price > maxPrice){
+      if (movie.price < maxPrice){
         return movie;
       }
     }

@@ -9,13 +9,13 @@ void main() {
 
     // Checks that the repository can return a list of movie objects.
     test('Returns a list of movies', () {
-      final repository = MovieRepository();
+      final MovieRepository repository = MovieRepository();
       final movies = repository.getMovies();
       expect(movies, isA<List<Movie>>());
     });
 
     test('Returns the correct movie given an existing identifier', () {
-      final repository = MovieRepository();
+      final MovieRepository repository = MovieRepository();
       final movies = repository.getMovies();
 
       final expectedMovie = movies.first;
@@ -27,7 +27,7 @@ void main() {
 
 
     test('getMovieByAgeRating verification', () {
-      final repository = MovieRepository();
+      final MovieRepository repository = MovieRepository();
       const testAgeRating = 'PG';
 
       final expectedResult = "Dracula (1931)";
@@ -38,6 +38,31 @@ void main() {
     });
 
     test('getMoviesUnderPrice verification', (){
+      final MovieRepository repository = MovieRepository();
+      const testPrice = 8.00;
+
+      final expectedResult = "Dracula (1931)";
+      final movieResults = repository.getMoviesUnderPrice(testPrice);
+
+      expect(movieResults?.title, expectedResult);
+    });
+
+    test('getMovieById returns matching movie when id exists', (){
+      final MovieRepository repository = MovieRepository();
+      final Movie? movie = repository.getMovieById(1);
+
+      expect(movie, isNotNull);
+      expect(movie?.title, 'Dracula (1931)');
+      expect(movie?.ageRating, 'PG');
+      expect(movie?.price, 7.50);
+    });
+
+    test('getMovieById returns null when id does not exist', (){
+      final MovieRepository repository = MovieRepository();
+      final Movie? movie = repository.getMovieById(100);
+
+      expect(movie, isNull);
+
     });
 
   });
