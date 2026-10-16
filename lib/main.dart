@@ -22,7 +22,7 @@ class SouthseaCinemaApp extends StatelessWidget {
           seedColor: cinemaBrand,
           primary: cinemaBrand,
           surface: cinemaSurface,
-        ),
+        ), 
       ),
       initialRoute: '/',
       routes: {
