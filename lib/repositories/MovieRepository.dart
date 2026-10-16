@@ -20,7 +20,7 @@ class MovieRepository {
         title: 'King Kong',
         ageRating: 'PG',
         description: 'The King Kong character was conceived and created by American filmmaker Merian C. Cooper. In the original film, the characters name is Kong, a name given to him by the inhabitants of the fictional "Skull Island" in the Indian Ocean, where Kong lives along with other oversized animals, such as plesiosaurs, pterosaurs, and various dinosaurs. An American film crew, led by Carl Denham, captures Kong and takes him to New York City to be exhibited as the "Eighth Wonder of the World".',
-        date: 'Friday 23 Oct 2026',
+        date: 'Friday 23 Oct 2026', 
         timeStart: '19:00',
         timeEnd: '20:30',
         price: 7.50,
