@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
+
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
@@ -78,21 +80,32 @@ class MovieCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              ElevatedButton(
-                onPressed: () {
+              PrimaryButton(
+                label: "Book Now",
+                onPressed:() {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => MovieListing(movie: movie),
                     )
                   );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Colors.white,
-                ),
-                child: const Text('Book now'),
-              ),
+                } 
+              )
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => MovieListing(movie: movie),
+              //       )
+              //     );
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Theme.of(context).colorScheme.primary,
+              //     foregroundColor: Colors.white,
+              //   ),
+              //   child: const Text('Book now'),
+              // ),
             ],
           )
         ],
