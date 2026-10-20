@@ -53,7 +53,7 @@ void main(){
 
     expect(
       button.style?.backgroundColor?.resolve({}),
-      equals(cinemaBackground),
+      equals(cinemaBrand),
     );
     
   });
