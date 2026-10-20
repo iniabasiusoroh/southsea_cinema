@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 
 void main(){
@@ -36,4 +37,26 @@ void main(){
 
     expect(wasPressed, isTrue);
   });
+
+  testWidgets('PrimaryButton has the correct background colour', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: PrimaryButton(label: 'Order', onPressed: () {}),
+        ),
+      ),
+    );
+
+    final button = tester.widget<ElevatedButton>(
+      find.byType(ElevatedButton),
+    );
+
+    expect(
+      button.style?.backgroundColor?.resolve({}),
+      equals(cinemaBackground),
+    );
+    
+  });
+
+
 }
