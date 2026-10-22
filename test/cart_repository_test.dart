@@ -56,11 +56,17 @@ void main() {
 
     test('adds items and calculates subtotal correctly', (){
       final CartRepository cart = CartRepository.instance;
-      const CartItem1 = (movie: testMovie1, quantity: 2);
-      const CartItem2  = (movie: testMovie2, quantity: 3);
 
-      cart.addItem(CartItem1);
-      cart.addItem(CartItem2);
+      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2);
+      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3);
+
+			cart.addItem(cartItem1);
+			cart.addItem(cartItem2);
+
+			expect(cart.getItems(), [cartItem1, cartItem2]);
+			expect(cart.getTotalItems(), 5);
+			expect(cart.totalItemCount, 5);
+			expect(cart.getSubtotal(), 67.0);
     });
 
   });
