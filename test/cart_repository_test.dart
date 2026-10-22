@@ -69,6 +69,11 @@ void main() {
 
       expect(cart.getItems(), [cartItem1, cartItem2]);
       expect(cart.getTotalItems(), 2);
+
+      cart.removeItem(0);
+
+      expect(cart.getItems(), [cartItem2]);
+      expect(cart.getTotalItems(), 1);
     });
 
   });
