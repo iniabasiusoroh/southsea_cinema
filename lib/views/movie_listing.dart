@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
 
 class MovieListing extends StatelessWidget {
   final Movie movie;
@@ -125,12 +126,18 @@ class MovieListing extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () {
-              // Add the action to perform when this button is pressed.
+          PrimaryButton(
+            label: "Add to Order",
+            onPressed: (){
+              // Add the action to peform when this button is pressed
             },
-            child: const Text('Add to Order'),
-          ),
+          )
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // Add the action to perform when this button is pressed.
+          //   },
+          //   child: const Text('Add to Order'),
+          // ),
         ]
       )
     ); 
