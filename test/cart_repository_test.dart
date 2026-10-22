@@ -28,17 +28,6 @@ const Movie testMovie2 = Movie(
 	imagePath: 'assets/images/midnight_mystery.jpg',
 );
 
-const Movie testMovie3 = Movie(
-	id: 3,
-	title: 'Summer at the Shore',
-	ageRating: 'U',
-	description: 'A family discovers adventure during a seaside holiday.',
-	date: '2025-06-17',
-	timeStart: '20:00',
-	timeEnd: '21:45',
-	price: 10.50,
-	imagePath: 'assets/images/summer_at_the_shore.jpg',
-);
 
 void main() {
   setUp((){
@@ -67,6 +56,19 @@ void main() {
 			expect(cart.getTotalItems(), 5);
 			expect(cart.totalItemCount, 5);
 			expect(cart.getSubtotal(), 67.0);
+    });
+
+    test('removes items correctly', (){
+      final CartRepository cart = CartRepository.instance;
+
+      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 1);
+      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 1);
+
+      cart.addItem(cartItem1);
+			cart.addItem(cartItem2);
+
+      expect(cart.getItems(), [cartItem1, cartItem2]);
+      expect(cart.getTotalItems(), 2);
     });
 
   });
