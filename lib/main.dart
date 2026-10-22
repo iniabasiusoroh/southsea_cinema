@@ -32,8 +32,17 @@ class SouthseaCinemaApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeView(),
+        // '/': (context) => const HomeView(),
         // '/listing': (context) => const MovieListing(),
+        '/': (BuildContext context){
+          return const HomeView();
+        },
+        '/basket': (BuildContext context){
+          return const BasketScreen(); // Going to add Basket Screen.
+        },
+        '/settings': (BuildContext context){
+          return const SettingScreen(); //Going to add Settings Screen.
+        }
       },
     );
   }
