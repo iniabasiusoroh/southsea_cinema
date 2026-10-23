@@ -3,14 +3,23 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:southsea_cinema/repositories/cart_repository.dart';
+import 'package:southsea_cinema/models/cart_item.dart';
 
-class MovieListing extends StatelessWidget {
+class MovieListing extends StatefulWidget {
   final Movie movie;
 
   const MovieListing({
     super.key,
     required this.movie,
     });
+
+  @override
+  State<MovieListing> createState() => _MovieListingState();
+}
+
+class _MovieListingState extends State<MovieListing> {
+  int selectedQuantity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +36,19 @@ class MovieListing extends StatelessWidget {
       body: Column(
         children: [
           buildMovieCard(
-            movie.title,
-            movie.description,
-            movie.date,
-            movie.timeStart,
-            movie.timeEnd,
-            movie.price,
+            widget.movie.title,
+            widget.movie.description,
+            widget.movie.date,
+            widget.movie.timeStart,
+            widget.movie.timeEnd,
+            widget.movie.price,
           )
         ],
       ),
     );
   }
   
+
   // This function creates a movie card with a title and description.
   Container buildMovieCard(String title, String description, String date, String timeStart, String timeEnd, dynamic price) {
     return Container(
@@ -115,7 +125,9 @@ class MovieListing extends StatelessWidget {
                   DropdownMenuEntry(value: 5, label: '5'),
                 ],
                 onSelected: (int? value) {
-                  // Handle the selected value here.
+                  if (value != null) {
+                    setState(() => selectedQuantity = value);
+                  }
                 },
               ),
               const SizedBox(width: 12),
@@ -128,8 +140,20 @@ class MovieListing extends StatelessWidget {
           const SizedBox(height: 12),
           PrimaryButton(
             label: "Add to Order",
-            onPressed: (){
-              // Add the action to peform when this button is pressed
+            onPressed: () {
+              if (selectedQuantity == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Select at least one ticket.')),
+                );
+                return;
+              }
+
+              CartRepository.instance.addItem(
+                CartItem(movie: widget.movie, quantity: selectedQuantity),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Tickets added to your order.')),
+              );
             },
           )
           // ElevatedButton(

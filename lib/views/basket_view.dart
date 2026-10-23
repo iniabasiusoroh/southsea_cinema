@@ -51,7 +51,7 @@ class _BasketViewState extends State<BasketView> {
         content = _buildEmptyState();
       }
     } else {
-      content = const Text('Basket list placeholder');
+      content = _buildBasketList(cart, items);
     }
 
     return Scaffold(
@@ -61,7 +61,7 @@ class _BasketViewState extends State<BasketView> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: content,
-      )
+      ),
     );
   }
 
