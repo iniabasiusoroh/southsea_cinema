@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/models/cart_item.dart';
 import 'package:southsea_cinema/models/movie.dart';
-import 'package:southsea_cinema/repositories/movie_repository.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
 
 const Movie testMovie1 = Movie(
@@ -40,7 +39,7 @@ void main() {
       expect(cart.getItems().length, 0);
       expect(cart.getTotalItems(), 0);
       expect(cart.totalItemCount, 0);
-      expect(cart.getSubtotal(), 0.0);
+      expect(cart.getTotal(), 0.0);
     });
 
     test('adds items and calculates subtotal correctly', (){
@@ -55,7 +54,7 @@ void main() {
 			expect(cart.getItems(), [cartItem1, cartItem2]);
 			expect(cart.getTotalItems(), 5);
 			expect(cart.totalItemCount, 5);
-			expect(cart.getSubtotal(), 67.0);
+			expect(cart.getTotal(), 67.0);
     });
 
     test('removes items correctly', (){

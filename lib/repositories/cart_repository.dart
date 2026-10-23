@@ -36,7 +36,7 @@ class CartRepository {
     return getTotalItems();
   }
 
-  double getSubtotal() {
+  double getTotal() {
     double sum = 0.0;
     for (final CartItem item in _items) {
       sum += item.lineTotal;
