@@ -150,6 +150,7 @@ class _MovieListingState extends State<MovieListing> {
 
               CartRepository.instance.addItem(
                 CartItem(movie: widget.movie, title: widget.movie.title, quantity: selectedQuantity, date: widget.movie.date, timeEnd: widget.movie.timeEnd, timeStart: widget.movie.timeStart),
+                // CartItem(movie: widget.movie, quantity: selectedQuantity, date: widget.movie.date, timeEnd: widget.movie.timeEnd, timeStart: widget.movie.timeStart),
               );
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Tickets added to your order.')),

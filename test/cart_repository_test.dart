@@ -47,6 +47,8 @@ void main() {
 
       CartItem cartItem1 = CartItem(movie: testMovie1, title: testMovie1.title, quantity: 2, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
       CartItem cartItem2 = CartItem(movie: testMovie2, title: testMovie2.title, quantity: 3, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
+      // CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
+      // CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
 
 			cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
@@ -62,6 +64,8 @@ void main() {
 
       CartItem cartItem1 = CartItem(movie: testMovie1, title: testMovie1.title, quantity: 1, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
       CartItem cartItem2 = CartItem(movie: testMovie2, title: testMovie2.title, quantity: 1, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
+      // CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
+      // CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
 
       cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
