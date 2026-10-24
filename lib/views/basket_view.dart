@@ -90,7 +90,7 @@ class _BasketViewState extends State<BasketView> {
                   style: const TextStyle(fontWeight: FontWeight.w600)
                 ),
                 const SizedBox(height:4),
-                const Text(
+                Text(
                   'PLACEHOLDER',
                   style: TextStyle(
                     color: cinemaFontWhite,

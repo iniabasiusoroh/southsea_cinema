@@ -8,7 +8,7 @@ const Movie testMovie1 = Movie(
 	title: 'The Last Voyage',
 	ageRating: 'PG',
 	description: 'A crew sets out on a journey across the stars.',
-	date: '2025-06-15',
+	date: 'Monday 12th November 2026',
 	timeStart: '14:00',
 	timeEnd: '16:00',
 	price: 12.50,
@@ -20,7 +20,7 @@ const Movie testMovie2 = Movie(
 	title: 'Midnight Mystery',
 	ageRating: '12A',
 	description: 'A detective investigates a mysterious disappearance.',
-	date: '2025-06-16',
+  date: 'Monday 11th November 2026',
 	timeStart: '17:30',
 	timeEnd: '19:30',
 	price: 14.00,
@@ -45,8 +45,8 @@ void main() {
     test('adds items and calculates subtotal correctly', (){
       final CartRepository cart = CartRepository.instance;
 
-      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2, date: 'Monday 12th November 2026', timeEnd: '20:00', timeStart: '18:00');
-      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3, date: 'Monday 11th November 2026', timeEnd: '20:00', timeStart: '18:00');
+      CartItem cartItem1 = CartItem(movie: testMovie1, title: testMovie1.title, quantity: 2, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
+      CartItem cartItem2 = CartItem(movie: testMovie2, title: testMovie2.title, quantity: 3, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
 
 			cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
@@ -60,8 +60,8 @@ void main() {
     test('removes items correctly', (){
       final CartRepository cart = CartRepository.instance;
 
-      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 1, date: 'Monday 12th November 2026', timeEnd: '20:00', timeStart: '18:00');
-      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 1, date: 'Monday 11th November 2026', timeEnd: '20:00', timeStart: '18:00');
+      CartItem cartItem1 = CartItem(movie: testMovie1, title: testMovie1.title, quantity: 1, date: testMovie1.date, timeEnd: testMovie1.timeEnd, timeStart: testMovie1.timeStart);
+      CartItem cartItem2 = CartItem(movie: testMovie2, title: testMovie2.title, quantity: 1, date: testMovie2.date, timeEnd: testMovie2.timeEnd, timeStart: testMovie2.timeStart);
 
       cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
