@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/cart_item.dart';
+import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 
@@ -56,7 +57,7 @@ class _BasketViewState extends State<BasketView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text ('Basket', style: cinemaHeaderStyle)
+        title: const Text ('Southsea Cinema', style: cinemaHeaderStyle)
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -67,30 +68,73 @@ class _BasketViewState extends State<BasketView> {
 
   Widget _buildLineItem(CartRepository cart, CartItem item, int index) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
         children:[
+          SizedBox(
+            width: 115,
+            child: Text(
+              '${item.quantity} Tickets',
+              style: const TextStyle(
+                color: cinemaBrand, 
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${item.quantity} x ${item.movie.title}',
+                  '${item.quantity} Standard',
                   style: const TextStyle(fontWeight: FontWeight.w600)
                 ),
                 const SizedBox(height:4),
-                Text('£${item.lineTotal.toStringAsFixed(2)}')
+                const Text(
+                  'PLACEHOLDER',
+                  style: TextStyle(
+                    color: cinemaFontWhite,
+                  ),
+                ),
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.delete_outline, color: Colors.red),
-            onPressed: (){
-              setState((){
-                cart.removeItem(index);
-              });
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Text(
+              '£${item.lineTotal.toStringAsFixed(2)}',
+              style: const TextStyle(
+                color: cinemaFontWhite,
+              ),
+              
+            ),
+            
           ),
+          Container(
+            color: cinemaBrand,
+            child: IconButton(
+              icon: const Icon(
+                Icons.delete_outline,
+                color: cinemaFontWhite),
+
+                onPressed: () {
+                  setState((){
+                    cart.removeItem(index);
+                  });
+                },
+            ),
+             
+          )
+          
+
+          // IconButton(
+          //   icon: const Icon(Icons.delete_outline, color: Colors.red),
+          //   onPressed: (){
+          //     setState((){
+          //       cart.removeItem(index);
+          //     });
+          //   },
+          // ),
         ],
       ),
     );
@@ -120,7 +164,7 @@ class _BasketViewState extends State<BasketView> {
   Widget _buildBasketList(CartRepository cart, List<CartItem> items){
     final List<Widget> children = [];
 
-    children.add(const Text('Your basket', style: cinemaHeaderStyle));
+    children.add(const Text('MY ORDER', style: cinemaHeaderStyle));
     children.add(const SizedBox(height: 16));
 
     for (int index = 0; index < items.length; index++) {

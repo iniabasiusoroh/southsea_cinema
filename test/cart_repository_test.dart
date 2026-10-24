@@ -45,8 +45,8 @@ void main() {
     test('adds items and calculates subtotal correctly', (){
       final CartRepository cart = CartRepository.instance;
 
-      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2);
-      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3);
+      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 2, date: 'Monday 12th November 2026', timeEnd: '20:00', timeStart: '18:00');
+      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 3, date: 'Monday 11th November 2026', timeEnd: '20:00', timeStart: '18:00');
 
 			cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
@@ -60,8 +60,8 @@ void main() {
     test('removes items correctly', (){
       final CartRepository cart = CartRepository.instance;
 
-      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 1);
-      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 1);
+      const CartItem cartItem1 = CartItem(movie: testMovie1, quantity: 1, date: 'Monday 12th November 2026', timeEnd: '20:00', timeStart: '18:00');
+      const CartItem cartItem2 = CartItem(movie: testMovie2, quantity: 1, date: 'Monday 11th November 2026', timeEnd: '20:00', timeStart: '18:00');
 
       cart.addItem(cartItem1);
 			cart.addItem(cartItem2);
