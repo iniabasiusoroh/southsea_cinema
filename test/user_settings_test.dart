@@ -1,0 +1,1 @@
+import 'package:southsea_cinema/models/user_settings.dart';
