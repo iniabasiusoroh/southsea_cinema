@@ -152,8 +152,8 @@ void main(){
       expect(movie.imagePath, 'testImagePath');
     });
 
-  test('fromJson accepts a whole-number price', (){
-    final Map<String, dynamic> data = <String, dynamic>{
+    test('fromJson accepts a whole-number price', (){
+      final Map<String, dynamic> data = <String, dynamic>{
         'id': 1,
         'title': 'testMovie',
         'ageRating': 'PG',
@@ -167,6 +167,6 @@ void main(){
       final Movie movie = Movie.fromJson(data);
       expect(movie.price, 7.0);
       expect(movie.price, isA<double>());
-  });
+    });
   });
 }
