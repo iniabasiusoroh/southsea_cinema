@@ -46,7 +46,9 @@ class CartRepository {
 
   // clearing items
   void clear(){
-    _items.clear;
+    for (int index = _items.length - 1; index >= 0; index--) {
+      _items.removeAt(index);
+    }
   }
 
 }

@@ -79,6 +79,47 @@ void main() {
       expect(cart.getTotalItems(), 1);
     });
 
+    test('removing the last item resets the totals', () {
+      final CartRepository cart = CartRepository.instance;
+      final CartItem cartItem = CartItem(
+        movie: testMovie1,
+        title: testMovie1.title,
+        quantity: 2,
+        date: testMovie1.date,
+        timeEnd: testMovie1.timeEnd,
+        timeStart: testMovie1.timeStart,
+      );
+
+      cart.addItem(cartItem);
+      cart.removeItem(0);
+
+      expect(cart.getItems(), isEmpty);
+      expect(cart.getTotalItems(), 0);
+      expect(cart.totalItemCount, 0);
+      expect(cart.getTotal(), 0.0);
+    });
+
+    test('clear empties the basket and resets totals', () {
+      final CartRepository cart = CartRepository.instance;
+      final CartItem cartItem = CartItem(
+        movie: testMovie1,
+        title: testMovie1.title,
+        quantity: 1,
+        date: testMovie1.date,
+        timeEnd: testMovie1.timeEnd,
+        timeStart: testMovie1.timeStart,
+      );
+
+      cart.addItem(cartItem);
+      cart.clear();
+      
+
+      expect(cart.getItems(), isEmpty);
+      expect(cart.getTotalItems(), 0);
+      expect(cart.totalItemCount, 0);
+      expect(cart.getTotal(), 0.0);
+    });
+
   });
 
 }
