@@ -56,4 +56,20 @@ class Movie {
       imagePath: imagePath,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic> {
+      'id': id,
+      'title': title,
+      'ageRating': ageRating,
+      'description': description,
+      'date': date,
+      'timeStart': timeStart,
+      'timeEnd': timeEnd,
+      'price': price,
+      'imagePath': imagePath
+    };
+    return data;
+  }
+
 }
