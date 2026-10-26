@@ -126,5 +126,30 @@ void main(){
       expect(movie2.isAdultOnly, false);
       expect(movie3.isAdultOnly, true);
     });
+    
+    test('JSON conversion preserves each movie field', (){
+      final Map<String, dynamic> data = <String, dynamic>{
+        'id': 1,
+        'title': 'testMovie',
+        'ageRating': 'PG',
+        'description': 'A relaxing movie',
+        'date': 'Monday 1st January 2025',
+        'timeStart': '20:00',
+        'timeEnd': '21:30',
+        'price': 7.50,
+        'imagePath': 'testImagePath',
+      };
+
+      final Movie movie = Movie.fromJson(data);
+      expect(movie.id, 1);
+      expect(movie.title, 'testMovie');
+      expect(movie.ageRating, 'PG');
+      expect(movie.description, 'A relaxing movie');
+      expect(movie.date, 'Monday 1st January 2025');
+      expect(movie.timeStart, '20:00');
+      expect(movie.timeEnd, '21:30');
+      expect(movie.price, 7.50);
+      expect(movie.imagePath, 'testImagePath');
+    });
   });
 }
