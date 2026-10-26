@@ -3,10 +3,6 @@
 //   assets:
 //     - assets/images/
 
-import 'package:flutter/foundation.dart';
-
-
-
 class Movie {
   final int id;
   final String title;
