@@ -2,6 +2,11 @@
 // flutter:
 //   assets:
 //     - assets/images/
+
+import 'package:flutter/foundation.dart';
+
+
+
 class Movie {
   final int id;
   final String title;
@@ -25,9 +30,34 @@ class Movie {
     required this.imagePath, // Initialize the new field
   });
 
+
   String get formattedPrice => '£${price.toStringAsFixed(2)}';
 
   bool get isChildFriendly => ageRating == 'U' || ageRating == 'PG';
 
   bool get isAdultOnly => ageRating == '18';
+
+  factory Movie.fromJson(Map<String, dynamic> json) {
+    final int id = json['id'] as int;
+    final String title = json['title'] as String;
+    final String ageRating = json['ageRating'] as String;
+    final String description = json['description'] as String;
+    final String date = json['date'] as String;
+    final String timeStart = json['timeStart'] as String;
+    final String timeEnd = json['timeEnd'] as String;
+    final double price = json['price'] as double;
+    final String imagePath = json['imagePath'] as String;
+
+    return Movie(
+      id: id,
+      title: title,
+      ageRating: ageRating,
+      description: description,
+      date: date,
+      timeStart: timeStart,
+      timeEnd: timeEnd,
+      price: price,
+      imagePath: imagePath,
+    );
+  }
 }
