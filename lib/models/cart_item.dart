@@ -18,6 +18,6 @@ class CartItem {
   });
 
   double get lineTotal{
-    return movie.price * quantity;
+    return movie.price * quantity.toDouble();
   }
 }

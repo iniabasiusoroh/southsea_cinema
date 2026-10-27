@@ -11,7 +11,7 @@ class Movie {
   final String date;
   final String timeStart;
   final String timeEnd;
-  final double price;
+  final num price;
   final String imagePath; // New field for the image path
 
   const Movie({
@@ -41,7 +41,8 @@ class Movie {
     final String date = json['date'] as String;
     final String timeStart = json['timeStart'] as String;
     final String timeEnd = json['timeEnd'] as String;
-    final double price = json['price'] as double;
+    final num priceNumber = json['price'] as num;
+    final double price = priceNumber.toDouble();
     final String imagePath = json['imagePath'] as String;
 
     return Movie(
