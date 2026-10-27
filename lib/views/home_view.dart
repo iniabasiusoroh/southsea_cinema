@@ -49,8 +49,25 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final movieRepository = MovieRepository();
-    final movies = movieRepository.getMovies();
+    final Widget body;
+    if(_loading) {
+      body = const Center(child: CircularProgressIndicator());
+    } else if (_errorMessage.isNotEmpty) {
+      body = Center(child: Text(_errorMessage));
+    } else {
+      body = ListView.builder(
+        itemCount: _movies.length,
+        itemBuilder: (BuildContext context, int index) {
+          return MovieCard(movie: _movies[index]);
+        },
+      );
+    }
+    
+
+
+
+    // final movieRepository = MovieRepository();
+    // final movies = movieRepository.getMovies();
 
     return Scaffold(
       appBar: AppBar(
@@ -60,13 +77,7 @@ class _HomeViewState extends State<HomeView> {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: ListView.builder(
-        itemCount: movies.length,
-        itemBuilder: (context, index) {
-          final movie = movies[index];
-          return MovieCard(movie: movie);
-        },
-      ),
+      body: body
     );
   }
 }
