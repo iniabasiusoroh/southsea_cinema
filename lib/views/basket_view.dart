@@ -183,7 +183,7 @@ class _BasketViewState extends State<BasketView> {
     children.add(
       _buildTotalRow(
         'Total to pay',
-        '£${cart.getTotal()}',
+        '£${cart.getTotal().toStringAsFixed(2)}',
         emphasise: true,
       )
     );

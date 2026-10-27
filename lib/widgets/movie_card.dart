@@ -46,6 +46,7 @@ class MovieCard extends StatelessWidget {
               Flexible(
                 child: Image.asset(movie.imagePath),
               ),
+              
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
