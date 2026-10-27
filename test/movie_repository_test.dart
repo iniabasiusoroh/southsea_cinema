@@ -3,6 +3,8 @@ import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/repositories/movie_repository.dart';
 
 void main() {
+
+  TestWidgetsFlutterBinding.ensureInitialized();
   group('Movie Repository Tests', () {
 
     // Checks that the repository can return a list of movie objects.
@@ -60,6 +62,17 @@ void main() {
       final Movie? movie = repository.getMovieById(100);
 
       expect(movie, isNull);
+
+    });
+
+    test ('loadMoviesFromAssets reads the bundled JSON menu', () async {
+      final MovieRepository repository = MovieRepository();
+      final List<Movie> movies = await repository.loadMoviesFromAsset();
+
+      expect(movies[0].title, 'Dracula (1931)');
+      expect(movies[1].id, 2);
+      expect(movies[1]. ageRating, 'PG');
+      expect(repository.getMovies(), movies);
 
     });
 
