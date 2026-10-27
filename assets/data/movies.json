@@ -31,5 +31,16 @@
         "timeEnd": "21:30",
         "price": 8.14,
         "imagePath": "assets/images/moana.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Tarzan (1999)",
+        "ageRating": "U",
+        "description": "A man raised by gorillas must decide where he really belongs when he discovers he is a human.",
+        "date": "Sunday 25 Oct 2026",
+        "timeStart": "15:00",
+        "timeEnd": "17:00",
+        "price": 10.00,
+        "imagePath": "assets/images/tarzan1999.jpg"
     }
 ]
