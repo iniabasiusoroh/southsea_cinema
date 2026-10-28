@@ -43,10 +43,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       patronNumber = savedPatronNumber;
     }
 
-    bool newsleterr = false;
+    bool newsletter = false;
     if (savedNewsletter != null) {
-      newsleterr = savedNewsletter;
+      newsletter = savedNewsletter;
     }
+
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _addressController.text = address;
+      _emailController.text = email;
+      _patronNumberController.text = patronNumber;
+      _receiveNewsletter = newsletter;
+    });
+
   }
 
   @override
