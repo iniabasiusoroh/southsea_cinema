@@ -72,7 +72,9 @@ void main() {
       expect(movies[0].title, 'Dracula (1931)');
       expect(movies[1].id, 2);
       expect(movies[1]. ageRating, 'PG');
+      expect(movies[1].imagePath, "assets/images/kongpicture.jpg");
       expect(repository.getMovies(), movies);
+      expect(movies[2].title, "Moana");
 
     });
 
