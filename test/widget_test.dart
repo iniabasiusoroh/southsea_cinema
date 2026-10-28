@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/views/home_view.dart';
+import 'package:flutter/services.dart';
 
 Future<void> pumpHomeView(WidgetTester tester) async { // test utility that takes the test harness.
   await tester.pumpWidget(const MaterialApp(home: HomeView())); // pump widget tells flutter to render that widget tree so that test can inspect it
@@ -11,6 +12,9 @@ Future<void> pumpHomeView(WidgetTester tester) async { // test utility that take
 // the test can then look for the widgets/texts that it needs to find.
 
 void main() {
+  setUp(() {
+    rootBundle.clear(); // This runs before each test
+  });
   group('App smoke tests', () {
     testWidgets('App displays HomeView as home', (WidgetTester tester) async {
       await pumpHomeView(tester);
