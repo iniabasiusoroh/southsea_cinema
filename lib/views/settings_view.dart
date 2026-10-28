@@ -27,6 +27,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final String? savedEmail = await prefs.getString(prefEmail);
     final String? savedPatronNumber = await prefs.getString(prefPatronNumber);
     final bool? savedNewsletter = await prefs.getBool(prefNewsletter);
+
+    String address = '';
+    if (savedAddress != null){
+      address = savedAddress;
+    }
+
+    String email = '';
+    if (savedEmail != null) {
+      email = savedEmail;
+    }
+
+    String patronNumber = '';
+    if (savedPatronNumber != null){
+      patronNumber = savedPatronNumber;
+    }
+
+    bool newsleterr = false;
+    if (savedNewsletter != null) {
+      newsleterr = savedNewsletter;
+    }
   }
 
   @override
