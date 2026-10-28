@@ -22,4 +22,13 @@ void main(){
     expect(settings.patronNumber, '12345');
     expect(settings.receiveNewsletter, isTrue);
   });
+
+  test('UserSettings keeps defaults for values that are not configured', (){
+    const UserSettings settings = UserSettings(email: 'user@example.com');
+
+    expect(settings.address, isEmpty);
+    expect(settings.email, 'user@example.com');
+    expect(settings.patronNumber, '0');
+    expect(settings.receiveNewsletter, isFalse);
+  });
 }
