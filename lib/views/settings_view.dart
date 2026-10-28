@@ -4,6 +4,12 @@ import 'package:southsea_cinema/models/user_settings.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+const String prefAddress = 'user_address';
+const String prefEmail = 'user_email';
+const String prefPatronNumber = 'user_patronNumber';
+const String prefNewsletter = 'user_newsletter';
+
+
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -15,6 +21,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  Future<void> _loadSettings() async {
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    final String? savedAddress = await prefs.getString(prefAddress);
+    final String? savedEmail = await prefs.getString(prefEmail);
+    final String? savedPatronNumber = await prefs.getString(prefPatronNumber);
+    final bool? savedNewsletter = await prefs.getBool(prefNewsletter);
+  }
+
   @override
   late TextEditingController _addressController;
   late TextEditingController _emailController;
