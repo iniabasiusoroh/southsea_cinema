@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/bin/common_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/user_settings.dart';
@@ -83,10 +85,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.dispose();
   }
 
-  void _saveSettings() {
+  Future<void> _saveSettings() async {
     final String address = _addressController.text.trim();
     final String email = _emailController.text.trim();
     final String patronNumber = _patronNumberController.text.trim();
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    await prefs.setString(prefAddress, address);
+    await prefs.setString(prefEmail, email);
+    await prefs.setString(prefPatronNumber, patronNumber);
+    await prefs.setBool(prefNewsletter, _receiveNewsletter);
 
     final UserSettings settings = UserSettings(
       address: address,
@@ -96,6 +103,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
 
     setState((){
+      // _confirmationMessage = 'Settings saved';
+      if (!mounted) {
+        return;
+      }
       _confirmationMessage = 'Settings saved';
     });
   }
