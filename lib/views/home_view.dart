@@ -13,7 +13,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   List<Movie> _movies = [];
   bool _loading = true;
   String _errorMessage = '';
@@ -27,20 +26,19 @@ class _HomeViewState extends State<HomeView> {
   Future<void> _loadSandwiches() async {
     try {
       final MovieRepository repository = MovieRepository();
-      final List<Movie> movies = 
-        await repository.loadMoviesFromAsset();
+      final List<Movie> movies = await repository.loadMoviesFromAsset();
       if (!mounted) {
         return;
       }
-      setState((){
+      setState(() {
         _movies = movies;
         _loading = false;
       });
-    }  catch(error) {
-      if (!mounted){
+    } catch (error) {
+      if (!mounted) {
         return;
       }
-      setState((){
+      setState(() {
         _errorMessage = 'Could not load menu: $error';
         _loading = false;
       });
@@ -50,7 +48,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final Widget body;
-    if(_loading) {
+    if (_loading) {
       body = const Center(child: CircularProgressIndicator());
     } else if (_errorMessage.isNotEmpty) {
       body = Center(child: Text(_errorMessage));
@@ -62,22 +60,18 @@ class _HomeViewState extends State<HomeView> {
         },
       );
     }
-    
-
-
 
     // final movieRepository = MovieRepository();
     // final movies = movieRepository.getMovies();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle, style: cinemaHeaderStyle),
-        backgroundColor: cinemaSurface,
-        iconTheme: const IconThemeData(color: cinemaBrand),
-        elevation: 0,
-      ),
-      drawer: const NavDrawer(),
-      body: body
-    );
+        appBar: AppBar(
+          title: const Text(appTitle, style: cinemaHeaderStyle),
+          backgroundColor: cinemaSurface,
+          iconTheme: const IconThemeData(color: cinemaBrand),
+          elevation: 0,
+        ),
+        drawer: const NavDrawer(),
+        body: body);
   }
 }
