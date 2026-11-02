@@ -73,6 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _addressController = TextEditingController();
     _emailController = TextEditingController();
     _patronNumberController = TextEditingController();
+    _loadSettings();
   }
   
   @override
