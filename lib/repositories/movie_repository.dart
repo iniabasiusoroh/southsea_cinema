@@ -6,7 +6,6 @@ import 'package:flutter/services.dart'; // Provides root bundle, an object
 // that reads files listened under assets.
 
 class MovieRepository {
-
   List<Movie>? _cachedMovies;
 
   List<Movie> getMovies() {
@@ -14,7 +13,7 @@ class MovieRepository {
     if (cachedMovies != null) {
       return cachedMovies;
     }
-    
+
     return [
       Movie(
         id: 1,
@@ -73,13 +72,13 @@ class MovieRepository {
 
   Future<List<Movie>> loadMoviesFromAsset({
     String assetPath = 'assets/data/movies.json',
-  }) async{
+  }) async {
     final String jsonString = await rootBundle.loadString(assetPath);
     final dynamic decodedData = jsonDecode(jsonString);
     final List<dynamic> jsonList = decodedData as List<dynamic>;
     final List<Movie> loadedMovies = [];
 
-    for (final dynamic item in jsonList){
+    for (final dynamic item in jsonList) {
       final Map<String, dynamic> itemMap = item as Map<String, dynamic>;
       final Movie movie = Movie.fromJson(itemMap);
       loadedMovies.add(movie);
@@ -88,5 +87,4 @@ class MovieRepository {
     _cachedMovies = loadedMovies;
     return loadedMovies;
   }
-
 }
