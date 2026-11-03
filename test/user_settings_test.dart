@@ -30,6 +30,28 @@ void main(){
       
   });
 
+  testWidgets('SettingsScreen pre_fills saved settings on open, Second test', (
+    WidgetTester tester,
+  ) async {
+    SharedPreferencesAsyncPlatform.instance = 
+      InMemorySharedPreferencesAsync.withData(<String, Object>{
+        prefAddress: 'Catherine House, PO1 1DZ',
+        prefEmail: 'iniabasiusoroh@gmail.com',
+        prefPatronNumber: '98765',
+        prefNewsletter: false
+      });
+
+      await tester.pumpWidget(const MaterialApp(home: SettingsScreen()));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Catherine House, PO1 1DZ'), findsOneWidget);
+      expect(find.text('iniabasiusoroh@gmail.com'), findsOneWidget);
+      expect(find.text('98765'), findsOneWidget);
+      final Switch switchWidget = tester.widget<Switch>(find.byType(Switch));
+      expect(switchWidget.value, isFalse);
+      
+  });
+
   setUp(() {
     SharedPreferencesAsyncPlatform.instance =
       InMemorySharedPreferencesAsync.empty();
