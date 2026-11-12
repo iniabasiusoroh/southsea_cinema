@@ -95,6 +95,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await prefs.setString(prefPatronNumber, patronNumber);
     await prefs.setBool(prefNewsletter, _receiveNewsletter);
 
+    // ignore: unused_local_variable
     final UserSettings settings = UserSettings(
       address: address,
       email: email,
