@@ -61,6 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   @override
+  // ignore: override_on_non_overriding_member
   late TextEditingController _addressController;
   late TextEditingController _emailController;
   late TextEditingController _patronNumberController;
