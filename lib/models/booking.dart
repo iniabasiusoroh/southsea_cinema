@@ -22,5 +22,25 @@ class OrderRecord {
       'total': total,
       'date': date
     };
+    if (id != null) {
+      data['id'] = id;
+    }
+    return data;
+  }
+
+  factory OrderRecord.fromMap(Map<String, Object?> map) {
+    final int bookingNumber = map['booking_number'] as int;
+    final String summary = map['summary'] as String;
+    final num totalNumber = map['total'] as num;
+    final double total = totalNumber.toDouble();
+    final String date = map['date'] as String;
+
+    return OrderRecord(
+      id: map['id'] as int?,
+      bookingNumber: bookingNumber,
+      summary: summary,
+      total: total,
+      date: date,
+    );
   }
 }
