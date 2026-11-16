@@ -60,6 +60,13 @@ class MovieDatabase {
         'date': "18/04/2024 12:45",
       },
     );
+    await db.insert('orders', <String, Object?>{
+        'booking_number': 3,
+        'summary': 'Inserted for testing.',
+        'total': 30.00,
+        'date': "18/04/2024 12:50",
+      },
+    );
   }
 }
 
