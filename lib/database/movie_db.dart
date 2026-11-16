@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:southsea_cinema/models/booking_record.dart';
 
 class MovieDatabase {
   MovieDatabase._internal();
@@ -30,7 +31,6 @@ class MovieDatabase {
     );
     return db;
   }
-
 
   Future<void> createTables(Database db, int version) async {
     await db.execute('''
@@ -67,6 +67,40 @@ class MovieDatabase {
         'date': "18/04/2024 12:50",
       },
     );
+
+    Future<int> insertOrder(OrderRecord order) async {
+      final Database db = await database;
+      final int id = await db.insert('orders', order.toMap());
+      return id;
+    }
+
+    Future<List<OrderRecord>> getAllOrders() async {
+      final Database db = await database;
+      final List<Map<String, Object?>> records = await db.query('orders', orderBy: 'booking_number DESC');
+      
+      final List<OrderRecord> orders = [];
+      for (final Map<String, Object?> row in records) {
+        orders.add(OrderRecord.fromMap(row));
+      }
+      return orders;
+    }
+
+    Future<int> getNextBookingNumber() async {
+      final Database db = await database;
+      final List<Map<String, Object?>> records = await db.rawQuery(
+        'SELECT MAX(booking_number) as max_booking_number FROM orders',
+      );
+
+      if (records.isEmpty) {
+        return 1;
+      }
+      final Object? maxValue = records[0]['max_booking_number'];
+      if (maxValue == null) {
+        return 1;
+      }
+      final int currentMax = maxValue as int;
+      return currentMax + 1;
+    }
   }
 }
 
