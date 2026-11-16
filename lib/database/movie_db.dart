@@ -44,4 +44,24 @@ class MovieDatabase {
       )
     ''');
   }
+
+  Future<void> _createDB (Database db, int version) async {
+    await createTables(db, version);
+    await db.insert('orders', <String, Object?>{
+        'booking_number': 1,
+        'summary': 'Inserted for testing.',
+        'total': 10.00,
+        'date': "18/04/2024 12:32",
+      },
+    );
+    await db.insert('orders', <String, Object?>{
+        'booking_number': 2,
+        'summary': 'Inserted for testing.',
+        'total': 20.00,
+        'date': "18/04/2024 12:45",
+      },
+    );
+  }
 }
+
+// Seed past orders only when creating the database.
