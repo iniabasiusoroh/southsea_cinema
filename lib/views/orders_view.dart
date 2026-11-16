@@ -3,6 +3,7 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/database/movie_db.dart';
 import 'package:southsea_cinema/models/booking_record.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:southsea_cinema/widgets/orders_button.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({super.key});
