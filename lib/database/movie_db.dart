@@ -4,7 +4,9 @@ import 'package:southsea_cinema/models/booking_record.dart';
 
 class MovieDatabase {
   MovieDatabase._internal();
+  
   static final MovieDatabase instance = MovieDatabase._internal();
+  
   static Database? _database;
 
   void setDatabase(Database? db) {
@@ -16,7 +18,7 @@ class MovieDatabase {
     if (cachedDatabase != null) {
       return cachedDatabase;
     }
-    final Database db = await _initDB ('movie_database.db');
+    final Database db = await _initDB('movie_database.db');
     _database = db;
     return db;
   }
@@ -44,31 +46,38 @@ class MovieDatabase {
     ''');
   }
 
-  Future<void> _createDB (Database db, int version) async {
+  Future<void> _createDB(Database db, int version) async {
     await createTables(db, version);
-    await db.insert('orders', <String, Object?>{
+    await db.insert(
+      'orders',
+      <String, Object?>{
         'booking_number': 1,
         'summary': 'Inserted for testing.',
         'total': 10.00,
         'date': "18/04/2024 12:32",
       },
     );
-    await db.insert('orders', <String, Object?>{
+    await db.insert(
+      'orders',
+      <String, Object?>{
         'booking_number': 2,
         'summary': 'Inserted for testing.',
         'total': 20.00,
         'date': "18/04/2024 12:45",
       },
     );
-    await db.insert('orders', <String, Object?>{
+    await db.insert(
+      'orders',
+      <String, Object?>{
         'booking_number': 3,
         'summary': 'Inserted for testing.',
         'total': 30.00,
         'date': "18/04/2024 12:50",
       },
     );
+  }
 
-    Future<int> insertOrder(OrderRecord order) async {
+  Future<int> insertOrder(OrderRecord order) async {
       final Database db = await database;
       final int id = await db.insert('orders', order.toMap());
       return id;
@@ -76,8 +85,9 @@ class MovieDatabase {
 
     Future<List<OrderRecord>> getAllOrders() async {
       final Database db = await database;
-      final List<Map<String, Object?>> records = await db.query('orders', orderBy: 'booking_number DESC');
-      
+      final List<Map<String, Object?>> records =
+          await db.query('orders', orderBy: 'booking_number DESC');
+
       final List<OrderRecord> orders = [];
       for (final Map<String, Object?> row in records) {
         orders.add(OrderRecord.fromMap(row));
@@ -101,7 +111,14 @@ class MovieDatabase {
       final int currentMax = maxValue as int;
       return currentMax + 1;
     }
-  }
+
+    Future<void> close() async {
+      final Database? cachedDatabase = _database;
+      if (cachedDatabase != null) {
+        await cachedDatabase.close();
+        _database = null;
+      }
+    }
 }
 
 // Seed past orders only when creating the database.
