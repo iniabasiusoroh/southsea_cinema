@@ -59,7 +59,8 @@ class _BasketViewState extends State<BasketView> {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        title: const Text ('Southsea Cinema', style: cinemaHeaderStyle)
+        title: const Text ('Southsea Cinema', style: cinemaHeaderStyle),
+        actions: const [OrdersButton()],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

@@ -46,7 +46,8 @@ class _OrdersViewState extends State<OrdersView> {
       }
       return Scaffold(
         appBar: AppBar(
-          title: const Text(appTitle, style: cinemaHeaderStyle)
+          title: const Text(appTitle, style: cinemaHeaderStyle),
+          actions: const [OrdersButton()],
         ),
         body: body
       );
