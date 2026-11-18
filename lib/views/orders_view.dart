@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/database/movie_db.dart';
 import 'package:southsea_cinema/models/booking_record.dart';
-import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/widgets/orders_button.dart';
 
 class OrdersView extends StatefulWidget {
@@ -65,9 +64,12 @@ class _OrdersViewState extends State<OrdersView> {
           await MovieDatabase.instance.getAllOrders();
 
         if (!mounted) {
+          return;
+        }
+        setState(() {
           _orders = orders;
           _loading = false;
-        }
+        });
       } catch(error) {
         if (!mounted) {
           return;
