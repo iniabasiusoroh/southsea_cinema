@@ -1,13 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/views/basket_view.dart';
 import 'package:southsea_cinema/views/home_view.dart';
-import 'package:southsea_cinema/views/settings_view.dart';
 import 'package:southsea_cinema/views/orders_view.dart';
-import 'package:flutter/foundation.dart';
+import 'package:southsea_cinema/views/settings_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-// need to run: 
+// need to run:
 // flutter create --platforms=ios,macos
 
 // For windows
@@ -15,7 +15,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 // flutter pub add sqflite_common_ffi
 
 bool isSupportedPlatform() {
-  if(kIsWeb) {
+  if (kIsWeb) {
     return false;
   }
   if (defaultTargetPlatform == TargetPlatform.android) {
@@ -28,16 +28,17 @@ bool isSupportedPlatform() {
     return true;
   }
   if (defaultTargetPlatform == TargetPlatform.windows) {
-      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
       sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
+      databaseFactory = databaseFactoryFfi;
     }
     return true;
   }
   return false;
 }
+
 void main() {
-  if (isSupportedPlatform()){
+  if (isSupportedPlatform()) {
     runApp(const SouthseaCinemaApp());
   } else {
     runApp(const UnsupportedPlatformApp());
@@ -82,7 +83,7 @@ class SouthseaCinemaApp extends StatelessWidget {
           seedColor: cinemaBrand,
           primary: cinemaBrand,
           surface: cinemaSurface,
-        ), 
+        ),
         appBarTheme: const AppBarTheme(
           backgroundColor: cinemaSurface,
           foregroundColor: cinemaBackground,
@@ -95,13 +96,13 @@ class SouthseaCinemaApp extends StatelessWidget {
       routes: {
         // '/': (context) => const HomeView(),
         // '/listing': (context) => const MovieListing(),
-        '/': (BuildContext context){
+        '/': (BuildContext context) {
           return const HomeView();
         },
-        '/basket': (BuildContext context){
+        '/basket': (BuildContext context) {
           return const BasketView(); // Going to add Basket Screen.
         },
-        '/settings': (BuildContext context){
+        '/settings': (BuildContext context) {
           return const SettingsScreen(); //Going to add Settings Screen.
         },
         '/orders': (BuildContext context) {
