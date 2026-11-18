@@ -5,13 +5,33 @@ import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/settings_view.dart';
 import 'package:southsea_cinema/views/orders_view.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
+// need to run: 
+// flutter create --platforms=ios,macos
+
+// For windows
+// flutter create --platforms=windows .
+// flutter pub add sqflite_common_ffi
 
 bool isSupportedPlatform() {
   if(kIsWeb) {
     return false;
   }
   if (defaultTargetPlatform == TargetPlatform.android) {
+    return true;
+  }
+  if (defaultTargetPlatform == TargetPlatform.iOS) {
+    return true;
+  }
+  if (defaultTargetPlatform == TargetPlatform.macOS) {
+    return true;
+  }
+  if (defaultTargetPlatform == TargetPlatform.windows) {
+      if (!kIsWeb && defaultTargetPlatform == TargetPlatform.windows) {
+      sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+    }
     return true;
   }
   return false;
