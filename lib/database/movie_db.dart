@@ -36,7 +36,7 @@ class MovieDatabase {
 
   Future<void> createTables(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS orders (
+      CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         booking_number INTEGER NOT NULL,
         summary TEXT NOT NULL,
@@ -49,7 +49,7 @@ class MovieDatabase {
   Future<void> _createDB(Database db, int version) async {
     await createTables(db, version);
     await db.insert(
-      'orders',
+      'bookings',
       <String, Object?>{
         'booking_number': 1,
         'summary': 'Inserted for testing.',
@@ -78,47 +78,47 @@ class MovieDatabase {
   }
 
   Future<int> insertOrder(OrderRecord order) async {
-      final Database db = await database;
-      final int id = await db.insert('orders', order.toMap());
-      return id;
+    final Database db = await database;
+    final int id = await db.insert('orders', order.toMap());
+    return id;
+  }
+
+  Future<List<OrderRecord>> getAllOrders() async {
+    final Database db = await database;
+    final List<Map<String, Object?>> records =
+        await db.query('orders', orderBy: 'booking_number DESC');
+
+    final List<OrderRecord> orders = [];
+    for (final Map<String, Object?> row in records) {
+      orders.add(OrderRecord.fromMap(row));
     }
-
-    Future<List<OrderRecord>> getAllOrders() async {
-      final Database db = await database;
-      final List<Map<String, Object?>> records =
-          await db.query('orders', orderBy: 'booking_number DESC');
-
-      final List<OrderRecord> orders = [];
-      for (final Map<String, Object?> row in records) {
-        orders.add(OrderRecord.fromMap(row));
-      }
       return orders;
-    }
+  }
 
-    Future<int> getNextBookingNumber() async {
-      final Database db = await database;
-      final List<Map<String, Object?>> records = await db.rawQuery(
-        'SELECT MAX(booking_number) as max_booking_number FROM orders',
-      );
+  Future<int> getNextBookingNumber() async {
+    final Database db = await database;
+    final List<Map<String, Object?>> records = await db.rawQuery(
+      'SELECT MAX(booking_number) as max_booking_number FROM orders',
+    );
 
-      if (records.isEmpty) {
-        return 1;
-      }
-      final Object? maxValue = records[0]['max_booking_number'];
-      if (maxValue == null) {
-        return 1;
-      }
-      final int currentMax = maxValue as int;
-      return currentMax + 1;
+    if (records.isEmpty) {
+      return 1;
     }
+    final Object? maxValue = records[0]['max_booking_number'];
+    if (maxValue == null) {
+      return 1;
+    }
+    final int currentMax = maxValue as int;
+    return currentMax + 1;
+  }
 
-    Future<void> close() async {
-      final Database? cachedDatabase = _database;
-      if (cachedDatabase != null) {
-        await cachedDatabase.close();
-        _database = null;
-      }
+  Future<void> close() async {
+    final Database? cachedDatabase = _database;
+    if (cachedDatabase != null) {
+      await cachedDatabase.close();
+      _database = null;
     }
+  }
 }
 
 // Seed past orders only when creating the database.
