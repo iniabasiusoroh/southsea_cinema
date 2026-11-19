@@ -32,19 +32,20 @@ void main() {
     WidgetTester tester,
   ) async {
     CartRepository.instance.addItem(
-      const CartItem(movie: testMovie1, quantity: 2, date: '01/01/2026', timeEnd: '22:00', timeStart: '20:00', title: 'Godzila'),
+      const CartItem(
+          movie: testMovie1,
+          quantity: 2,
+          date: '01/01/2026',
+          timeEnd: '22:00',
+          timeStart: '20:00',
+          title: 'Godzila'),
     );
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: const BasketView(),
-        routes: {
-          '/orders': (BuildContext context) {
-            return const OrdersView();
-          }
-        }
-      )
-    );
+    await tester.pumpWidget(MaterialApp(home: const BasketView(), routes: {
+      '/orders': (BuildContext context) {
+        return const OrdersView();
+      }
+    }));
     await tester.runAsync(() async {
       await tester.tap(find.text('Checkout'));
       await tester.pumpAndSettle();
@@ -55,7 +56,7 @@ void main() {
       return await MovieDatabase.instance.getAllOrders();
     });
 
-    expect (orders, isNotNull);
+    expect(orders, isNotNull);
     if (orders != null) {
       expect(orders.length, 1);
       expect(orders[0].bookingNumber, 1);
@@ -64,14 +65,19 @@ void main() {
     }
     expect(CartRepository.instance.getItems(), isEmpty);
     expect(find.byType(OrdersView), findsOneWidget);
-
   });
 
   testWidgets('Checkout keeps the basket when saving fails', (
     WidgetTester tester,
   ) async {
     CartRepository.instance.addItem(
-      const CartItem(movie: testMovie1, quantity: 2, date: '01/01/2026', timeEnd: '22:00', timeStart: '20:00', title: 'Godzila'),
+      const CartItem(
+          movie: testMovie1,
+          quantity: 2,
+          date: '01/01/2026',
+          timeEnd: '22:00',
+          timeStart: '20:00',
+          title: 'Godzila'),
     );
     await tester.runAsync(() async {
       final Database database = await MovieDatabase.instance.database;

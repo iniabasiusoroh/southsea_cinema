@@ -5,15 +5,14 @@ class OrderRecord {
   final double total;
   final String date;
 
-  const OrderRecord ({
-  this.id,
-  required this.bookingNumber,
-  required this.summary,
-  required this.total,
-  required this.date
-  });
+  const OrderRecord(
+      {this.id,
+      required this.bookingNumber,
+      required this.summary,
+      required this.total,
+      required this.date});
 
-  Map<String,Object?> toMap() {
+  Map<String, Object?> toMap() {
     final Map<String, Object?> data = <String, Object?>{
       'booking_number': bookingNumber,
       'summary': summary,

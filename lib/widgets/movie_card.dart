@@ -3,7 +3,6 @@ import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/views/movie_listing.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 
-
 class MovieCard extends StatelessWidget {
   final Movie movie;
 
@@ -17,7 +16,7 @@ class MovieCard extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children:[
+        children: [
           RichText(
             text: TextSpan(
               children: [
@@ -46,7 +45,6 @@ class MovieCard extends StatelessWidget {
               Flexible(
                 child: Image.asset(movie.imagePath),
               ),
-              
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
@@ -64,7 +62,7 @@ class MovieCard extends StatelessWidget {
             'BOOK TICKETS',
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,  
+              fontSize: 16,
             ),
           ),
           const SizedBox(height: 20),
@@ -76,22 +74,20 @@ class MovieCard extends StatelessWidget {
                   '${movie.date} | ${movie.timeStart} - ${movie.timeEnd}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 16,  
+                    fontSize: 16,
                   ),
                 ),
               ),
               const SizedBox(width: 12),
               PrimaryButton(
-                label: "Book Now",
-                onPressed:() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MovieListing(movie: movie),
-                    )
-                  );
-                } 
-              )
+                  label: "Book Now",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MovieListing(movie: movie),
+                        ));
+                  })
               // ElevatedButton(
               //   onPressed: () {
               //     Navigator.push(

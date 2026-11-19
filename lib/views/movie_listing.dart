@@ -12,7 +12,7 @@ class MovieListing extends StatefulWidget {
   const MovieListing({
     super.key,
     required this.movie,
-    });
+  });
 
   @override
   State<MovieListing> createState() => _MovieListingState();
@@ -32,7 +32,7 @@ class _MovieListingState extends State<MovieListing> {
       ),
       drawer: const NavDrawer(),
 
-    //   Lets us create the body. (putting the movie cards inside the body)
+      //   Lets us create the body. (putting the movie cards inside the body)
       body: Column(
         children: [
           buildMovieCard(
@@ -47,22 +47,23 @@ class _MovieListingState extends State<MovieListing> {
       ),
     );
   }
-  
 
   // This function creates a movie card with a title and description.
-  Container buildMovieCard(String title, String description, String date, String timeStart, String timeEnd, dynamic price) {
+  Container buildMovieCard(String title, String description, String date,
+      String timeStart, String timeEnd, dynamic price) {
     return Container(
-      alignment: Alignment.center,
-
-      margin: const EdgeInsets.all(16.0),
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: cinemaSurface,
-        borderRadius: BorderRadius.circular(100.0),
-        border: Border.all(color: cinemaBrand, width: 2.0), // Gives each card a border with the cinema brand color.
-      ),
-      child: Column(
-        children:[
+        alignment: Alignment.center,
+        margin: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          color: cinemaSurface,
+          borderRadius: BorderRadius.circular(100.0),
+          border: Border.all(
+              color: cinemaBrand,
+              width:
+                  2.0), // Gives each card a border with the cinema brand color.
+        ),
+        child: Column(children: [
           Text(
             title,
             style: const TextStyle(
@@ -76,14 +77,14 @@ class _MovieListingState extends State<MovieListing> {
             'Southsea Cinema Room',
             style: const TextStyle(
               color: cinemaFontWhite,
-              fontSize: 16,  
+              fontSize: 16,
             ),
           ),
           Text(
             '$date, $timeStart - ends at $timeEnd',
             style: const TextStyle(
               color: cinemaFontWhite,
-              fontSize: 16,  
+              fontSize: 16,
             ),
           ),
           const SizedBox(height: 12),
@@ -149,7 +150,13 @@ class _MovieListingState extends State<MovieListing> {
               }
 
               CartRepository.instance.addItem(
-                CartItem(movie: widget.movie, title: widget.movie.title, quantity: selectedQuantity, date: widget.movie.date, timeEnd: widget.movie.timeEnd, timeStart: widget.movie.timeStart),
+                CartItem(
+                    movie: widget.movie,
+                    title: widget.movie.title,
+                    quantity: selectedQuantity,
+                    date: widget.movie.date,
+                    timeEnd: widget.movie.timeEnd,
+                    timeStart: widget.movie.timeStart),
                 // CartItem(movie: widget.movie, quantity: selectedQuantity, date: widget.movie.date, timeEnd: widget.movie.timeEnd, timeStart: widget.movie.timeStart),
               );
               ScaffoldMessenger.of(context).showSnackBar(
@@ -163,8 +170,6 @@ class _MovieListingState extends State<MovieListing> {
           //   },
           //   child: const Text('Add to Order'),
           // ),
-        ]
-      )
-    ); 
+        ]));
   }
 }

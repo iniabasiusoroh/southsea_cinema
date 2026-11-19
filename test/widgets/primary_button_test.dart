@@ -3,31 +3,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 
-void main(){
+void main() {
   testWidgets('PrimaryButton renders its label', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(
-          body:PrimaryButton(label: 'Order', onPressed: () {})
-        ),
+        home: Scaffold(body: PrimaryButton(label: 'Order', onPressed: () {})),
       ),
     );
 
     expect(find.text('Order'), findsOneWidget);
   });
 
-  testWidgets('PrimaryButton invokes onPressed when tapped', (WidgetTester tester) async {
+  testWidgets('PrimaryButton invokes onPressed when tapped',
+      (WidgetTester tester) async {
     bool wasPressed = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
           body: PrimaryButton(
-            label: 'Order',
-            onPressed: (){
-              wasPressed = true;
-            }
-          ),
+              label: 'Order',
+              onPressed: () {
+                wasPressed = true;
+              }),
         ),
       ),
     );
@@ -38,7 +36,8 @@ void main(){
     expect(wasPressed, isTrue);
   });
 
-  testWidgets('PrimaryButton has the correct background colour', (WidgetTester tester) async {
+  testWidgets('PrimaryButton has the correct background colour',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -55,8 +54,5 @@ void main(){
       button.style?.backgroundColor?.resolve({}),
       equals(cinemaBrand),
     );
-    
   });
-
-
 }

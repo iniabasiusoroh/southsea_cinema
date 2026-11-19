@@ -17,7 +17,7 @@ class CartItem {
     required this.date,
   });
 
-  double get lineTotal{
+  double get lineTotal {
     return movie.price * quantity.toDouble();
   }
 }

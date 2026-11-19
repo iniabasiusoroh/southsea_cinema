@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 
-class PrimaryButton extends StatelessWidget{
+class PrimaryButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
@@ -12,17 +12,16 @@ class PrimaryButton extends StatelessWidget{
   });
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: cinemaBrand,
-        foregroundColor: cinemaFontWhite,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: cinemaBrand,
+          foregroundColor: cinemaFontWhite,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+          ),
         ),
-      ),
-      onPressed: onPressed,
-      child: Text(label)
-    );
+        onPressed: onPressed,
+        child: Text(label));
   }
 }

@@ -26,7 +26,6 @@ class Movie {
     required this.imagePath, // Initialize the new field
   });
 
-
   String get formattedPrice => '£${price.toStringAsFixed(2)}';
 
   bool get isChildFriendly => ageRating == 'U' || ageRating == 'PG';
@@ -59,7 +58,7 @@ class Movie {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic> {
+    final Map<String, dynamic> data = <String, dynamic>{
       'id': id,
       'title': title,
       'ageRating': ageRating,
@@ -72,5 +71,4 @@ class Movie {
     };
     return data;
   }
-
 }

@@ -7,11 +7,11 @@ class OrdersButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.receipt_long),
       onPressed: () {
-        ModalRoute<dynamic>?  modalRoute = ModalRoute.of(context);
+        ModalRoute<dynamic>? modalRoute = ModalRoute.of(context);
         String currentRoute = '';
 
         if (modalRoute != null) {
-          RouteSettings settings =modalRoute.settings;
+          RouteSettings settings = modalRoute.settings;
           String? routeName = settings.name;
           if (routeName != null) {
             currentRoute = routeName;

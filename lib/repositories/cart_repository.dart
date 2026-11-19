@@ -6,13 +6,13 @@ class CartRepository {
   static final CartRepository instance = CartRepository._internal();
 
   final List<CartItem> _items = [];
-  
+
   List<CartItem> getItems() {
     return List<CartItem>.unmodifiable(_items);
   }
   // Allows Items to be read safely without any modification
 
- // Adding and removing items
+  // Adding and removing items
 
   void addItem(CartItem item) {
     _items.add(item);
@@ -45,10 +45,9 @@ class CartRepository {
   }
 
   // clearing items
-  void clear(){
+  void clear() {
     for (int index = _items.length - 1; index >= 0; index--) {
       _items.removeAt(index);
     }
   }
-
 }

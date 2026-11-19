@@ -29,11 +29,10 @@ class _BasketViewState extends State<BasketView> {
       final MovieDatabase database = MovieDatabase.instance;
       final int bookingNumber = await database.getNextBookingNumber();
       final OrderRecord record = OrderRecord(
-        bookingNumber: bookingNumber,
-        summary: summary,
-        total: total,
-        date: date
-      );
+          bookingNumber: bookingNumber,
+          summary: summary,
+          total: total,
+          date: date);
 
       await database.insertOrder(record);
       cart.clear();
@@ -48,7 +47,7 @@ class _BasketViewState extends State<BasketView> {
       if (!mounted) {
         return;
       }
-      setState((){
+      setState(() {
         _confirmationMessage = 'Could not save your order: $error';
       });
     }
@@ -70,20 +69,16 @@ class _BasketViewState extends State<BasketView> {
     return '$day/$month/${now.year} $hour:$minute';
   }
 
-  Widget _buildEmptyState(){
+  Widget _buildEmptyState() {
     return const Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 32.0),
-        child: Text (
-          'Your basket is empty',
-          style: TextStyle(fontSize: 16, color: cinemaFontWhite)
-        )
-      )
-    );
+        child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 32.0),
+            child: Text('Your basket is empty',
+                style: TextStyle(fontSize: 16, color: cinemaFontWhite))));
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final CartRepository cart = CartRepository.instance;
     final List<CartItem> items = cart.getItems();
 
@@ -97,11 +92,11 @@ class _BasketViewState extends State<BasketView> {
             const SizedBox(height: 12),
             Text(
               _confirmationMessage,
-              style:const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             )
           ],
         );
-      }else{
+      } else {
         content = _buildEmptyState();
       }
     } else {
@@ -111,7 +106,7 @@ class _BasketViewState extends State<BasketView> {
     return Scaffold(
       drawer: const NavDrawer(),
       appBar: AppBar(
-        title: const Text ('Southsea Cinema', style: cinemaHeaderStyle),
+        title: const Text('Southsea Cinema', style: cinemaHeaderStyle),
         actions: const [OrdersButton()],
       ),
       body: SingleChildScrollView(
@@ -125,13 +120,13 @@ class _BasketViewState extends State<BasketView> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Row(
-        children:[
+        children: [
           SizedBox(
             width: 115,
             child: Text(
               '${item.quantity} Tickets',
               style: const TextStyle(
-                color: cinemaBrand, 
+                color: cinemaBrand,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -140,11 +135,9 @@ class _BasketViewState extends State<BasketView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '${item.quantity} Standard',
-                  style: const TextStyle(fontWeight: FontWeight.w600)
-                ),
-                const SizedBox(height:4),
+                Text('${item.quantity} Standard',
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 4),
                 Text(
                   item.title, ////LOOK BACK INTO THIS ????????????????????????????????????????????????????
                   style: TextStyle(
@@ -161,26 +154,19 @@ class _BasketViewState extends State<BasketView> {
               style: const TextStyle(
                 color: cinemaFontWhite,
               ),
-              
             ),
-            
           ),
           Container(
             color: cinemaBrand,
             child: IconButton(
-              icon: const Icon(
-                Icons.delete_outline,
-                color: cinemaFontWhite),
-
-                onPressed: () {
-                  setState((){
-                    cart.removeItem(index);
-                  });
-                },
+              icon: const Icon(Icons.delete_outline, color: cinemaFontWhite),
+              onPressed: () {
+                setState(() {
+                  cart.removeItem(index);
+                });
+              },
             ),
-             
           )
-          
 
           // IconButton(
           //   icon: const Icon(Icons.delete_outline, color: Colors.red),
@@ -207,16 +193,12 @@ class _BasketViewState extends State<BasketView> {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(label, style: style),
-          Text(value, style: style)
-        ],
+        children: [Text(label, style: style), Text(value, style: style)],
       ),
     );
   }
 
-
-  Widget _buildBasketList(CartRepository cart, List<CartItem> items){
+  Widget _buildBasketList(CartRepository cart, List<CartItem> items) {
     final List<Widget> children = [];
 
     children.add(const Text('MY ORDER', style: cinemaHeaderStyle));
@@ -235,18 +217,16 @@ class _BasketViewState extends State<BasketView> {
       ),
     );
 
-    children.add(
-      _buildTotalRow(
-        'Total to pay',
-        '£${cart.getTotal().toStringAsFixed(2)}',
-        emphasise: true,
-      )
-    );
+    children.add(_buildTotalRow(
+      'Total to pay',
+      '£${cart.getTotal().toStringAsFixed(2)}',
+      emphasise: true,
+    ));
     children.add(const SizedBox(height: 24));
 
     children.add(
       SizedBox(
-        width:double.infinity,
+        width: double.infinity,
         child: PrimaryButton(
           label: 'Checkout',
           onPressed: () {

@@ -10,8 +10,6 @@ const String prefEmail = 'user_email';
 const String prefPatronNumber = 'user_patronNumber';
 const String prefNewsletter = 'user_newsletter';
 
-
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -30,7 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final bool? savedNewsletter = await prefs.getBool(prefNewsletter);
 
     String address = '';
-    if (savedAddress != null){
+    if (savedAddress != null) {
       address = savedAddress;
     }
 
@@ -40,7 +38,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
 
     String patronNumber = '';
-    if (savedPatronNumber != null){
+    if (savedPatronNumber != null) {
       patronNumber = savedPatronNumber;
     }
 
@@ -58,7 +56,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       _patronNumberController.text = patronNumber;
       _receiveNewsletter = newsletter;
     });
-
   }
 
   @override
@@ -77,7 +74,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _patronNumberController = TextEditingController();
     _loadSettings();
   }
-  
+
   @override
   void dispose() {
     _addressController.dispose();
@@ -104,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       receiveNewsletter: _receiveNewsletter,
     );
 
-    setState((){
+    setState(() {
       // _confirmationMessage = 'Settings saved';
       if (!mounted) {
         return;
@@ -116,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavDrawer(),
+        drawer: const NavDrawer(),
         appBar: AppBar(
           title: const Text(appTitle, style: cinemaHeaderStyle),
         ),
@@ -127,35 +124,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 const Text(
                   'Customer Profile',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
-
                 TextField(
                   controller: _addressController,
                   maxLines: 3,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Address',
-                    hintText: 'Enter your address'
-                  ),
+                      border: OutlineInputBorder(),
+                      labelText: 'Address',
+                      hintText: 'Enter your address'),
                 ),
                 const SizedBox(height: 16),
-                  
                 TextField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter your email'
-                  ),
+                      border: OutlineInputBorder(),
+                      labelText: 'Email',
+                      hintText: 'Enter your email'),
                 ),
                 const SizedBox(height: 16),
-
                 TextField(
                   controller: _patronNumberController,
                   decoration: const InputDecoration(
@@ -165,7 +154,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
                 const SizedBox(height: 16),
-
                 Row(
                   children: [
                     const Expanded(
@@ -182,22 +170,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
                 const SizedBox(height: 20),
-
                 SizedBox(
                   width: double.infinity,
-                  child:PrimaryButton(
+                  child: PrimaryButton(
                     label: 'Save Settings',
                     onPressed: _saveSettings,
                   ),
                 ),
-                if (_confirmationMessage.isNotEmpty) ... [
+                if (_confirmationMessage.isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  Text(_confirmationMessage, style: const TextStyle(fontWeight: FontWeight.bold),),
+                  Text(
+                    _confirmationMessage,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ],
-            )
-        )
-    );
+            )));
   }
-
 }

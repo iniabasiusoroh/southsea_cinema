@@ -4,9 +4,9 @@ import 'package:southsea_cinema/models/booking_record.dart';
 
 class MovieDatabase {
   MovieDatabase._internal();
-  
+
   static final MovieDatabase instance = MovieDatabase._internal();
-  
+
   static Database? _database;
 
   void setDatabase(Database? db) {
@@ -92,7 +92,7 @@ class MovieDatabase {
     for (final Map<String, Object?> row in records) {
       orders.add(OrderRecord.fromMap(row));
     }
-      return orders;
+    return orders;
   }
 
   Future<int> getNextBookingNumber() async {

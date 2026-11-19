@@ -6,6 +6,7 @@ import 'package:southsea_cinema/views/home_view.dart';
 import 'package:southsea_cinema/views/orders_view.dart';
 import 'package:southsea_cinema/views/settings_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:flutter/foundation.dart';
 
 // need to run:
 // flutter create --platforms=ios,macos
