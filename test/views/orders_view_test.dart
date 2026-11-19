@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:southsea_cinema/models/movie.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:southsea_cinema/database/movie_db.dart';
 import 'package:southsea_cinema/views/orders_view.dart';
-import 'package:southsea_cinema/models/booking_record.dart';
+
 
 void main() {
   setUpAll(() async {
