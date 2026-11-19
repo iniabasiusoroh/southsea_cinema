@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:southsea_cinema/models/movie.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:southsea_cinema/database/movie_db.dart';
 import 'package:southsea_cinema/views/orders_view.dart';
+import 'package:southsea_cinema/models/booking_record.dart';
 
 void main() {
   setUpAll(() async {
@@ -59,5 +61,40 @@ void main() {
 
     expect(find.textContaining('Error loading orders'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
+  });
+
+  testWidgets('OrdersView lists saved orders newest-first', (
+    WidgetTester tester,
+  ) async {
+    await tester.runAsync(() async{
+      await MovieDatabase.instance.insertOrder(
+        const OrderRecord(
+          bookingNumber: 1,
+          summary: 'Test booking',
+          total: 10.0,
+          date: '18/04/2024 12:32'
+        ),
+      );
+      await MovieDatabase.instance.insertOrder(
+        const OrderRecord(
+          bookingNumber: 2,
+          summary: 'Test booking 2',
+          total: 15.00,
+          date: '02/01/2026 11:00'
+        ),
+      );
+
+      await tester.pumpWidget(const MaterialApp(home: OrdersView()));
+      await tester.pumpAndSettle();
+    });
+
+    await tester.pump();
+
+    expect(find.text('Order #1'), findsOneWidget);
+    expect(find.text('Order #2'), findsOneWidget);
+    expect(find.text('Test booking 2'), findsOneWidget);
+    final double newestY = tester.getTopLeft(find.text('Order #1')).dy;
+    final double oldestY = tester.getTopLeft(find.text('Order #2')).dy;
+    expect(newestY, lessThan(oldestY));
   });
 }
