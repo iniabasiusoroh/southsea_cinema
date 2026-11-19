@@ -36,7 +36,7 @@ class MovieDatabase {
 
   Future<void> createTables(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE IF NOT EXISTS bookings (
+      CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         booking_number INTEGER NOT NULL,
         summary TEXT NOT NULL,
@@ -49,7 +49,7 @@ class MovieDatabase {
   Future<void> _createDB(Database db, int version) async {
     await createTables(db, version);
     await db.insert(
-      'bookings',
+      'orders',
       <String, Object?>{
         'booking_number': 1,
         'summary': 'Inserted for testing.',

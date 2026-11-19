@@ -5,6 +5,8 @@ import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/repositories/cart_repository.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/widgets/orders_button.dart';
+import 'package:southsea_cinema/database/movie_db.dart';
+import 'package:southsea_cinema/models/booking_record.dart';
 
 class BasketView extends StatefulWidget {
   const BasketView({super.key});
@@ -17,6 +19,56 @@ class BasketView extends StatefulWidget {
 
 class _BasketViewState extends State<BasketView> {
   String _confirmationMessage = '';
+
+  Future<void> _checkout(CartRepository cart, List<CartItem> items) async {
+    final String summary = _buildSummary(items);
+    final double total = cart.getTotal();
+    final String date = _formatDate(DateTime.now());
+
+    try {
+      final MovieDatabase database = MovieDatabase.instance;
+      final int bookingNumber = await database.getNextBookingNumber();
+      final OrderRecord record = OrderRecord(
+        bookingNumber: bookingNumber,
+        summary: summary,
+        total: total,
+        date: date
+      );
+
+      await database.insertOrder(record);
+      cart.clear();
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _confirmationMessage = 'Order $bookingNumber saved';
+      });
+      Navigator.pushNamed(context, '/orders');
+    } catch (error) {
+      if (!mounted) {
+        return;
+      }
+      setState((){
+        _confirmationMessage = 'Could not save your order: $error';
+      });
+    }
+  }
+
+  String _buildSummary(List<CartItem> items) {
+    final List<String> parts = [];
+    for (final CartItem item in items) {
+      parts.add('${item.quantity} x ${item.movie.title}');
+    }
+    return parts.join(', ');
+  }
+
+  String _formatDate(DateTime now) {
+    final String day = now.day.toString().padLeft(2, '0');
+    final String month = now.month.toString().padLeft(2, '0');
+    final String hour = now.hour.toString().padLeft(2, '0');
+    final String minute = now.minute.toString().padLeft(2, '0');
+    return '$day/$month/${now.year} $hour:$minute';
+  }
 
   Widget _buildEmptyState(){
     return const Center(
@@ -198,10 +250,7 @@ class _BasketViewState extends State<BasketView> {
         child: PrimaryButton(
           label: 'Checkout',
           onPressed: () {
-            setState((){
-              cart.clear();
-              _confirmationMessage = 'Thanks, your order is on its way';
-            });
+            _checkout(cart, items);
           },
         ),
       ),
