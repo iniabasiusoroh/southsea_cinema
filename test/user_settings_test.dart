@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/user_settings.dart';
 import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
@@ -23,7 +25,9 @@ void main() {
     expect(find.text('Catherine House, PO1 1DZ'), findsOneWidget);
     expect(find.text('testemail@gmail.com'), findsOneWidget);
     expect(find.text('12345'), findsOneWidget);
-    final Switch switchWidget = tester.widget<Switch>(find.byType(Switch));
+    final Switch switchWidget = tester.widget<Switch>(
+      find.byKey(const ValueKey<String>('newsletter-switch')),
+    );
     expect(switchWidget.value, isTrue);
   });
 
@@ -44,8 +48,28 @@ void main() {
     expect(find.text('Catherine House, PO1 1DZ'), findsOneWidget);
     expect(find.text('iniabasiusoroh@gmail.com'), findsOneWidget);
     expect(find.text('98765'), findsOneWidget);
-    final Switch switchWidget = tester.widget<Switch>(find.byType(Switch));
+    final Switch switchWidget = tester.widget<Switch>(
+      find.byKey(const ValueKey<String>('newsletter-switch')),
+    );
     expect(switchWidget.value, isFalse);
+  });
+
+  testWidgets('SettingsScreen saves the light mode preference', (
+    WidgetTester tester,
+  ) async {
+    SharedPreferencesAsyncPlatform.instance =
+        InMemorySharedPreferencesAsync.empty();
+
+    await tester.pumpWidget(const MaterialApp(home: SettingsScreen()));
+    await tester.tap(find.byKey(const ValueKey<String>('light-mode-switch')));
+    await tester.pumpAndSettle();
+
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    expect(await prefs.getBool(prefLightMode), isTrue);
+    final SwitchListTile lightModeSwitch = tester.widget<SwitchListTile>(
+      find.byKey(const ValueKey<String>('light-mode-switch')),
+    );
+    expect(lightModeSwitch.value, isTrue);
   });
 
   setUp(() {

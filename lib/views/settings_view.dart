@@ -11,7 +11,14 @@ const String prefPatronNumber = 'user_patronNumber';
 const String prefNewsletter = 'user_newsletter';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final bool lightModeEnabled;
+  final ValueChanged<bool>? onLightModeChanged;
+
+  const SettingsScreen({
+    super.key,
+    this.lightModeEnabled = false,
+    this.onLightModeChanged,
+  });
 
   @override
   State<SettingsScreen> createState() {
@@ -64,6 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   late TextEditingController _emailController;
   late TextEditingController _patronNumberController;
   bool _receiveNewsletter = false;
+  bool _localLightModeEnabled = false;
   String _confirmationMessage = '';
 
   @override
@@ -72,6 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     _addressController = TextEditingController();
     _emailController = TextEditingController();
     _patronNumberController = TextEditingController();
+    _localLightModeEnabled = widget.lightModeEnabled;
     _loadSettings();
   }
 
@@ -110,6 +119,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  Future<void> _setLightMode(bool enabled) async {
+    try {
+      final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+      await prefs.setBool(prefLightMode, enabled);
+      if (!mounted) {
+        return;
+      }
+      if (widget.onLightModeChanged == null) {
+        setState(() {
+          _localLightModeEnabled = enabled;
+        });
+      } else {
+        widget.onLightModeChanged!(enabled);
+      }
+    } on Exception catch (error) {
+      if (!mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not update appearance: $error')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +160,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
+                SwitchListTile(
+                  key: const ValueKey<String>('light-mode-switch'),
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Light mode'),
+                  value: widget.onLightModeChanged == null
+                      ? _localLightModeEnabled
+                      : widget.lightModeEnabled,
+                  onChanged: _setLightMode,
+                ),
+                const SizedBox(height: 8),
                 TextField(
                   controller: _addressController,
                   maxLines: 3,
@@ -160,6 +203,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Text('Receive news by email'),
                     ),
                     Switch(
+                      key: const ValueKey<String>('newsletter-switch'),
                       value: _receiveNewsletter,
                       onChanged: (bool value) {
                         setState(() {

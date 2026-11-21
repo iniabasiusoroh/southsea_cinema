@@ -74,7 +74,7 @@ class _BasketViewState extends State<BasketView> {
         child: Padding(
             padding: EdgeInsets.symmetric(vertical: 32.0),
             child: Text('Your basket is empty',
-                style: TextStyle(fontSize: 16, color: cinemaFontWhite))));
+                style: TextStyle(fontSize: 16))));
   }
 
   @override
@@ -141,7 +141,7 @@ class _BasketViewState extends State<BasketView> {
                 Text(
                   item.title, ////LOOK BACK INTO THIS ????????????????????????????????????????????????????
                   style: TextStyle(
-                    color: cinemaFontWhite,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ],
@@ -151,15 +151,16 @@ class _BasketViewState extends State<BasketView> {
             padding: const EdgeInsets.only(right: 15.0),
             child: Text(
               '£${item.lineTotal.toStringAsFixed(2)}',
-              style: const TextStyle(
-                color: cinemaFontWhite,
-              ),
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
             ),
           ),
           Container(
             color: cinemaBrand,
             child: IconButton(
-              icon: const Icon(Icons.delete_outline, color: cinemaFontWhite),
+              icon: Icon(
+                Icons.delete_outline,
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
               onPressed: () {
                 setState(() {
                   cart.removeItem(index);
@@ -186,7 +187,7 @@ class _BasketViewState extends State<BasketView> {
     if (emphasise) {
       style = const TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
     } else {
-      style = const TextStyle(color: cinemaFontWhite);
+      style = TextStyle(color: Theme.of(context).colorScheme.onSurface);
     }
 
     return Padding(

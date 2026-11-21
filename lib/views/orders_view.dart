@@ -89,18 +89,22 @@ class _OrdersViewState extends State<OrdersView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Booking #${order.bookingNumber}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                Text('Booking #${order.bookingNumber}',
+                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
                 ),
-                Text('£${order.total.toStringAsFixed(2)}')
+                Text('£${order.total.toStringAsFixed(2)}',
+                  style: const TextStyle(fontSize: 12, color: Colors.black),
+                ),
               ],
             ),
             const SizedBox(height: 4),
-            Text(order.summary),
+            Text(order.summary,
+              style: const TextStyle(fontSize: 12, color: Colors.black),
+            ),
             const SizedBox(height: 4),
             Text(order.date,
-                style: const TextStyle(fontSize: 12, color: Colors.black54)),
+                style: const TextStyle(fontSize: 12, color: Colors.black)
+            ),
           ],
         ),
       ),

@@ -67,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(appTitle, style: cinemaHeaderStyle),
-          backgroundColor: cinemaSurface,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           iconTheme: const IconThemeData(color: cinemaBrand),
           elevation: 0,
         ),

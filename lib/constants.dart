@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const String appTitle = 'Southsea Cinema';
+const String prefLightMode = 'light_mode_enabled';
 
 const Color cinemaBrand = Color(0xFF55BEDE);
 const Color cinemaBrandLight = Color(0xFF7FCEE6);
@@ -12,7 +13,6 @@ const Color cinemaFontMuted = Color(0xFF8A90A0);
 const Color cinemaSurface = Color(0xFF242936);
 
 const TextStyle cinemaHeaderStyle = TextStyle(
-  color: cinemaFontWhite,
   fontSize: 18,
   fontWeight: FontWeight.bold,
 );
