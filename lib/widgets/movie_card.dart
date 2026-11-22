@@ -49,8 +49,8 @@ class MovieCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   movie.description,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 16,
                   ),
                 ),
@@ -60,8 +60,8 @@ class MovieCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             'BOOK TICKETS',
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 16,
             ),
           ),
@@ -72,8 +72,8 @@ class MovieCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   '${movie.date} | ${movie.timeStart} - ${movie.timeEnd}',
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 16,
                   ),
                 ),
