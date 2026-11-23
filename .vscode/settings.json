@@ -1,6 +1,9 @@
 {
-  "dart.defaultFlutterDevice": "edge",
+  "dart.defaultFlutterDevice": "emulator-5554",
   "dart.flutterSelectDeviceWhenConnected": false,
   "dart.runPubGetOnPubspecChanges": "always",
-  "security.workspace.trust.enabled": false
+  "security.workspace.trust.enabled": false,
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.jdt.ls.java.home": "C:/Program Files/Eclipse Adoptium/jdk-17.0.21.9-hotspot",
+  "java.import.gradle.java.home": "C:/Program Files/Eclipse Adoptium/jdk-17.0.21.9-hotspot"
 }
