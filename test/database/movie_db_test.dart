@@ -84,6 +84,41 @@ void main() {
     expect(saved.items.single.quantity, 2);
   });
 
+  test('insertOrder rolls back the order if an item cannot be stored',
+      () async {
+    final Database database = await MovieDatabase.instance.database;
+    await database.execute('DROP TABLE order_items');
+
+    await expectLater(
+      MovieDatabase.instance.insertOrder(
+        buildRecord(1, '1 x Test Movie', 10.0),
+        items: <CartItem>[
+          CartItem(
+            movie: Movie(
+              id: 1,
+              title: 'Test Movie',
+              ageRating: 'PG',
+              description: 'A test movie.',
+              date: '01/01/2026',
+              timeStart: '18:00',
+              timeEnd: '20:00',
+              price: 10.0,
+              imagePath: '',
+            ),
+            title: 'Test Movie',
+            quantity: 1,
+            date: '01/01/2026',
+            timeStart: '18:00',
+            timeEnd: '20:00',
+          ),
+        ],
+      ),
+      throwsA(isA<DatabaseException>()),
+    );
+
+    expect(await database.query('orders'), isEmpty);
+  });
+
   test('getNextBookingNumber incriments the current maximum', () async {
     expect(await MovieDatabase.instance.getNextBookingNumber(), 1);
 

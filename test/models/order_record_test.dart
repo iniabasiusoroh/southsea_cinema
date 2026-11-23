@@ -43,4 +43,62 @@ void main() {
     expect(restored.total, 6.0);
     expect(restored.total, isA<double>());
   });
+
+  test('Order item maps preserve movie and showing details', () {
+    const OrderItem item = OrderItem(
+      movieId: 7,
+      title: 'Test Movie',
+      ageRating: 'PG',
+      description: 'A test movie.',
+      date: '19/04/2024',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      unitPrice: 10.50,
+      quantity: 2,
+    );
+
+    final Map<String, Object?> row = item.toMap(orderId: 4);
+    final OrderItem restored = OrderItem.fromMap(row);
+
+    expect(row, <String, Object?>{
+      'order_id': 4,
+      'movie_id': 7,
+      'title': 'Test Movie',
+      'age_rating': 'PG',
+      'description': 'A test movie.',
+      'show_date': '19/04/2024',
+      'time_start': '18:00',
+      'time_end': '20:00',
+      'unit_price': 10.50,
+      'quantity': 2,
+    });
+    expect(restored.movieId, item.movieId);
+    expect(restored.title, item.title);
+    expect(restored.ageRating, item.ageRating);
+    expect(restored.description, item.description);
+    expect(restored.date, item.date);
+    expect(restored.timeStart, item.timeStart);
+    expect(restored.timeEnd, item.timeEnd);
+    expect(restored.unitPrice, item.unitPrice);
+    expect(restored.quantity, item.quantity);
+  });
+
+  test('Whole-number SQLite item prices become doubles', () {
+    final Map<String, Object?> row = const OrderItem(
+      movieId: 1,
+      title: 'Test Movie',
+      ageRating: 'PG',
+      description: 'A test movie.',
+      date: '19/04/2024',
+      timeStart: '18:00',
+      timeEnd: '20:00',
+      unitPrice: 10.0,
+      quantity: 1,
+    ).toMap(orderId: 1);
+    row['unit_price'] = 10;
+
+    final OrderItem restored = OrderItem.fromMap(row);
+    expect(restored.unitPrice, 10.0);
+    expect(restored.unitPrice, isA<double>());
+  });
 }

@@ -95,7 +95,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(CartRepository.instance.getItems().length, 1);
-    expect(find.text("2 x The Last Voyage"), findsOneWidget);
+    expect(find.text('2 Tickets'), findsOneWidget);
+    expect(find.text('Godzila'), findsOneWidget);
     expect(find.textContaining('Could not save your order'), findsOneWidget);
   });
 }
