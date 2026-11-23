@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/database/movie_db.dart';
 import 'package:southsea_cinema/models/booking_record.dart';
+import 'package:southsea_cinema/models/cart_item.dart';
+import 'package:southsea_cinema/models/movie.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
@@ -38,6 +40,48 @@ void main() {
     expect(orders[0].id, id);
     expect(orders[0].summary, '1 x Draculla');
     expect(orders[0].total, 10.50);
+  });
+
+  test('insertOrder stores movie and showing details for each item', () async {
+    final Movie movie = Movie(
+      id: 12,
+      title: 'The Last Voyage',
+      ageRating: '12A',
+      description: 'A voyage through dangerous waters.',
+      date: '01/01/2026',
+      timeStart: '20:00',
+      timeEnd: '22:00',
+      price: 12.50,
+      imagePath: 'assets/images/voyage.jpg',
+    );
+
+    await MovieDatabase.instance.insertOrder(
+      buildRecord(1, '2 x The Last Voyage', 25.0),
+      items: <CartItem>[
+        CartItem(
+          movie: movie,
+          title: movie.title,
+          quantity: 2,
+          date: '02/01/2026',
+          timeStart: '18:00',
+          timeEnd: '20:00',
+        ),
+      ],
+    );
+
+    final OrderRecord saved =
+        (await MovieDatabase.instance.getAllOrders()).single;
+    expect(saved.items, hasLength(1));
+    expect(saved.items.single.movieId, 12);
+    expect(saved.items.single.title, 'The Last Voyage');
+    expect(saved.items.single.ageRating, '12A');
+    expect(
+        saved.items.single.description, 'A voyage through dangerous waters.');
+    expect(saved.items.single.date, '02/01/2026');
+    expect(saved.items.single.timeStart, '18:00');
+    expect(saved.items.single.timeEnd, '20:00');
+    expect(saved.items.single.unitPrice, 12.50);
+    expect(saved.items.single.quantity, 2);
   });
 
   test('getNextBookingNumber incriments the current maximum', () async {

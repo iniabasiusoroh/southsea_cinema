@@ -79,7 +79,11 @@ class _OrdersViewState extends State<OrdersView> {
   }
 
   Widget _buildOrderCard(OrderRecord order) {
+    final Color cardColor = Theme.of(context).colorScheme.surface;
+    final Color textColor = Theme.of(context).colorScheme.onSurface;
+
     return Card(
+      color: cardColor,
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -89,22 +93,66 @@ class _OrdersViewState extends State<OrdersView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Booking #${order.bookingNumber}',
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+                Text(
+                  'Booking #${order.bookingNumber}',
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, color: textColor),
                 ),
-                Text('£${order.total.toStringAsFixed(2)}',
-                  style: const TextStyle(fontSize: 12, color: Colors.black),
+                Text(
+                  '£${order.total.toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: 12, color: textColor),
                 ),
               ],
             ),
             const SizedBox(height: 4),
-            Text(order.summary,
-              style: const TextStyle(fontSize: 12, color: Colors.black),
-            ),
+            if (order.items.isEmpty)
+              Text(
+                order.summary,
+                style: TextStyle(fontSize: 12, color: textColor),
+              )
+            else
+              ...order.items.map((item) => Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${item.quantity} x ${item.title}',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: textColor,
+                          ),
+                        ),
+                        Text(
+                          '${item.ageRating} · ${item.date} · '
+                          '${item.timeStart}-${item.timeEnd}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: textColor,
+                          ),
+                        ),
+                        Text(
+                          '£${(item.unitPrice * item.quantity).toStringAsFixed(2)}',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: textColor,
+                          ),
+                        ),
+                        Text(
+                          item.description,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: textColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
             const SizedBox(height: 4),
-            Text(order.date,
-                style: const TextStyle(fontSize: 12, color: Colors.black)
-            ),
+            Text(order.date, style: TextStyle(fontSize: 12, color: textColor)),
           ],
         ),
       ),

@@ -13,20 +13,24 @@ void main() {
       inMemoryDatabasePath,
       version: 1,
       onCreate: (Database db, int version) async {
-        await db.execute('''
-          CREATE TABLE orders (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            booking_number INTEGER NOT NULL,
-            summary TEXT NOT NULL,
-            total REAL NOT NULL,
-            date TEXT NOT NULL
-          )
-        ''');
-        await db.insert('orders', <String, Object?>{
+        await MovieDatabase.instance.createTables(db, version);
+        final int orderId = await db.insert('orders', <String, Object?>{
           'booking_number': 1,
           'summary': 'Test booking',
           'total': 10.0,
           'date': '18/04/2024 12:32',
+        });
+        await db.insert('order_items', <String, Object?>{
+          'order_id': orderId,
+          'movie_id': 7,
+          'title': 'Test Movie',
+          'age_rating': 'PG',
+          'description': 'A test movie description.',
+          'show_date': '19/04/2024',
+          'time_start': '18:00',
+          'time_end': '20:00',
+          'unit_price': 10.0,
+          'quantity': 1,
         });
       },
     );
@@ -46,7 +50,32 @@ void main() {
     await tester.pump();
 
     expect(find.text('Booking #1'), findsOneWidget);
+    expect(find.text('1 x Test Movie'), findsOneWidget);
+    expect(find.text('PG · 19/04/2024 · 18:00-20:00'), findsOneWidget);
+    expect(find.text('A test movie description.'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
+    final ThemeData theme = Theme.of(tester.element(find.byType(OrdersView)));
+    final Card card = tester.widget<Card>(find.byType(Card).first);
+    final Text title = tester.widget<Text>(find.text('1 x Test Movie'));
+    expect(card.color, theme.colorScheme.surface);
+    expect(title.style?.color, theme.colorScheme.onSurface);
+  });
+
+  testWidgets('order card uses readable colors in dark mode',
+      (WidgetTester tester) async {
+    final ThemeData theme = ThemeData.dark();
+    await tester.pumpWidget(
+      MaterialApp(theme: theme, home: const OrdersView()),
+    );
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 100)),
+    );
+    await tester.pump();
+
+    final Card card = tester.widget<Card>(find.byType(Card).first);
+    final Text title = tester.widget<Text>(find.text('1 x Test Movie'));
+    expect(card.color, theme.colorScheme.surface);
+    expect(title.style?.color, theme.colorScheme.onSurface);
   });
 
   testWidgets('shows error message when database query fails',

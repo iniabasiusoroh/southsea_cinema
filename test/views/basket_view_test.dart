@@ -62,6 +62,9 @@ void main() {
       expect(orders[0].bookingNumber, 1);
       expect(orders[0].summary, '2 x The Last Voyage');
       expect(orders[0].total, 25.0);
+      expect(orders[0].items.single.title, 'The Last Voyage');
+      expect(orders[0].items.single.quantity, 2);
+      expect(orders[0].items.single.date, '01/01/2026');
     }
     expect(CartRepository.instance.getItems(), isEmpty);
     expect(find.byType(OrdersView), findsOneWidget);

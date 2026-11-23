@@ -34,7 +34,7 @@ class _BasketViewState extends State<BasketView> {
           total: total,
           date: date);
 
-      await database.insertOrder(record);
+      await database.insertOrder(record, items: items);
       cart.clear();
       if (!mounted) {
         return;
