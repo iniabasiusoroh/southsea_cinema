@@ -15,7 +15,10 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 // flutter create --platforms=windows .
 // flutter pub add sqflite_common_ffi
 
-bool isSupportedPlatform() {
+bool isSupportedPlatform({bool isWeb = kIsWeb}) {
+  if (isWeb) {
+    return true;
+  }
   if (kIsWeb) {
     return false;
   }
