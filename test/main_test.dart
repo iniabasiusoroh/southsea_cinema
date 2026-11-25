@@ -74,4 +74,15 @@ void main() {
     final SharedPreferencesAsync prefs = SharedPreferencesAsync();
     expect(await prefs.getBool(prefLightMode), isTrue);
   });
+
+  test('Web is supported', () {
+    expect(isSupportedPlatform(isWeb: true), isTrue);
+  });
+
+  testWidgets('The unsupported platform screen explains what to do', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(const UnsupportedPlatformApp());
+    expect(find.textContaining('Android and web'), findsOneWidget);
+  });
 }
