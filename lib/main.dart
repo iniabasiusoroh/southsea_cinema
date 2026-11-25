@@ -61,9 +61,8 @@ class UnsupportedPlatformApp extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
-              'This app is orders order with SQLite and is set up to run on '
-              'Android only. Stop the app and run it on an Android emulator '
-              'or device instead.',
+              'This app is configured for Android and web Only. Stop the app '
+              'and run it on Chrome or an Android emulator insead. ',
               textAlign: TextAlign.center,
             ),
           ),
